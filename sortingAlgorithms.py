@@ -1,20 +1,7 @@
-import random
+import bubble_sort, insertion_sort, merge_sort, quick_sort, selection_sort
 
-def bubble_sort():
+def main():
     pass
 
-
-def selection_sort():
-    pass
-
-
-def insertion_sort():
-    pass
-
-
-def merge_sort():
-    pass
-
-
-def quick_sort():
+if __name__ == "__main__":
     pass
