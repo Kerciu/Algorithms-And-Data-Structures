@@ -1,7 +1,7 @@
 from bubble_sort import bubble_sort
 from selection_sort import selection_sort
 from insertion_sort import insertion_sort
-from merge_sort import merge_sort
+from merge_sort import merge_sort, merge
 from quick_sort import quick_sort
 
 unsorted_list1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -13,7 +13,7 @@ unsorted_list6 = ["ford", "honda,", "audi", "jeep", "nissan."]
 
 sorted_list1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 sorted_list2 = [-5, -2, 3, 6, 7, 9]
-sorted_list3 = [3, 3, 4, 4, 7, 9]
+sorted_list3 = [3, 3, 4, 4, 7, 12]
 sorted_list4 = ["adssf", "bsffsfs", "csddsw"]
 sorted_list5 = ["arbuz", "banan", "brzoskwnia", "gruszka", "jablko"]
 sorted_list6 = ["audi", "ford", "honda,", "jeep", "nissan."]
