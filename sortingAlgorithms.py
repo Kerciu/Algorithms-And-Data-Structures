@@ -15,14 +15,16 @@ def read_from_file(path):
         list_of_words = []
         for line in file_handle:
             line.rstrip()
-            line.rstrip("\n")
             line = line.split(" ")
-            forbidden_signs = ["", "-", "\n", "-----\n"]
+            forbidden_signs = ["", "-", "-\n", "-----\n"]
             for word in line:
                 if word not in forbidden_signs:
-                    list_of_words.append(word)
+                    list_of_words.append(word.rstrip("\n"))
     return list_of_words
 
 
 if __name__ == "__main__":
     main()
+
+
+print(read_from_file(PATH))
