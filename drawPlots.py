@@ -20,12 +20,21 @@ def process_algorithm_time(sorting_algorithm, arr):
     return stop - start
 
 
-#TODO Create function that extracts data from results and
-# saves it to the dictionary.
-def draw_computional_complexity(size, sorting_time, info):
-    # x axis: elements
-    # y axis: computing time
-    plt.plot(size, sorting_time, label=f"{info}")
+def extract_info(size, time, info_string):
+    return {info_string: [size, time]}
+
+
+# Takes in list of dictionaries
+# As an example: [{"Bubble Sort": [size, time]}, {"Merge Sort": ..]
+def draw_computional_complexity(list_of_data: list):
+
+    for data in list_of_data:
+        for key, value in data.items():
+            # value[0] == size , value[1] == sorting_time
+            sizes = [entry[0] for entry in value]
+            times = [entry[1] for entry in value]
+            plt.plot(sizes, times, label=key)
+
     plt.xlabel("Size of Sorted Array")
     plt.ylabel("Time Needed to Compute")
 
