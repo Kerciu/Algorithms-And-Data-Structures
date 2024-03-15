@@ -1,7 +1,7 @@
 from bubble_sort import bubble_sort
 from selection_sort import selection_sort
 from insertion_sort import insertion_sort
-from merge_sort import merge_sort, merge
+from merge_sort import merge_sort
 from quick_sort import quick_sort
 
 unsorted_list1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
