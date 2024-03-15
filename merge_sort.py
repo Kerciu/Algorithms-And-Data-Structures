@@ -1,25 +1,27 @@
-def merge_sort(lst):
-    if len(lst) <= 1:
-        return lst
-    middle = len(lst) // 2
-    left = lst[:middle]
-    right = lst[middle:]
-    sleft = merge_sort(left)
-    sright = merge_sort(right)
-    return merge(sleft, sright)
+def merge_sort(list):
+    if len(list) <= 1:
+        return list
+    middle_point = len(list) // 2
+    left_part = list[:middle_point]
+    right_part = list[middle_point:]
+    sorted_left_part = merge_sort(left_part)
+    sorted_right_part = merge_sort(right_part)
+    return merge_lists(sorted_left_part, sorted_right_part)
 
 
-def merge(left, right):
-    result = []
+def merge_lists(left_part, right_part):
     left_index = 0
     right_index = 0
-    while (left_index < len(left) and right_index < len(right)):
-        if left[left_index] < right[right_index]:
-            result.append(left[left_index])
-            left_index += 1
-        else:
-            result.append(right[right_index])
+    merged_list = []
+    while (left_index < len(left_part) and right_index < len(right_part)):
+        if left_part[left_index] > right_part[right_index]:
+            merged_list.append(right_part[right_index])
             right_index += 1
-    result.extend(left[left_index:])
-    result.extend(right[right_index:])
-    return result
+        else:
+            merged_list.append(left_part[left_index])
+            left_index += 1
+    if left_index < len(left_part):
+        merged_list.extend(left_part[left_index:])
+    elif right_index < len(right_part):
+        merged_list.extend(right_part[right_index:])
+    return merged_list
