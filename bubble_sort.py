@@ -1,15 +1,9 @@
-def bubble_sort(arr):
-    # Bubble sort algorithm
-
-    for i in range(len(arr)):
-
-        # second index to not go above array length limit
-        for j in range(0, len(arr) - i - 1):
-            if arr[j] > arr[j + 1]:
-
-                # Initialize temporary variables to store arr[i]
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
-
-    return arr
+def bubble_sort(list):
+    list_length = len(list)
+    for i in range(list_length):
+        # iterate through the list and swap two elements
+        # if firts is greater than second
+        for j in range(list_length - 1):
+            if list[j] > list[j + 1]:
+                list[j], list[j + 1] = list[j + 1], list[j]
+    return list
