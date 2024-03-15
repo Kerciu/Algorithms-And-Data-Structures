@@ -1,18 +1,24 @@
 def merge_sort(list):
     if len(list) <= 1:
         return list
+    # count the middle element of the list,round down
     middle_point = len(list) // 2
+    # seperate list to two halfs
     left_part = list[:middle_point]
     right_part = list[middle_point:]
+    # sort seperated list parts
     sorted_left_part = merge_sort(left_part)
     sorted_right_part = merge_sort(right_part)
+    # merge seperated lists
     return merge_lists(sorted_left_part, sorted_right_part)
 
 
 def merge_lists(left_part, right_part):
+    # point next unmerged element from each list
     left_index = 0
     right_index = 0
     merged_list = []
+    # add next elements from lists to merged_list in correct order
     while (left_index < len(left_part) and right_index < len(right_part)):
         if left_part[left_index] > right_part[right_index]:
             merged_list.append(right_part[right_index])
@@ -20,6 +26,7 @@ def merge_lists(left_part, right_part):
         else:
             merged_list.append(left_part[left_index])
             left_index += 1
+    # add rest of elements which were not added in the loop
     if left_index < len(left_part):
         merged_list.extend(left_part[left_index:])
     elif right_index < len(right_part):
