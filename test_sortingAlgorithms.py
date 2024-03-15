@@ -74,45 +74,56 @@ def test_bubble_sort_string():
     sorter1 = bubble_sort(unsorted_list3)
     sorter2 = bubble_sort(unsorted_list4)
     sorter3 = bubble_sort(unsorted_list5)
+    sorter4 = bubble_sort(unsorted_list6)
     assert sorter1 == sorted_list3
     assert sorter2 == sorted_list4
     assert sorter3 == sorted_list5
+    assert sorter4 == sorted_list6
 
 
 def test_selection_sort_string():
     sorter1 = selection_sort(unsorted_list3)
     sorter2 = selection_sort(unsorted_list4)
     sorter3 = selection_sort(unsorted_list5)
+    sorter4 = selection_sort(unsorted_list6)
     assert sorter1 == sorted_list3
     assert sorter2 == sorted_list4
     assert sorter3 == sorted_list5
+    assert sorter4 == sorted_list6
 
 
 def test_merge_sort_string():
     sorter1 = merge_sort(unsorted_list3)
     sorter2 = merge_sort(unsorted_list4)
     sorter3 = merge_sort(unsorted_list5)
+    sorter4 = merge_sort(unsorted_list6)
     assert sorter1 == sorted_list3
     assert sorter2 == sorted_list4
     assert sorter3 == sorted_list5
+    assert sorter4 == sorted_list6
+
 
 
 def test_insertion_sort_string():
     sorter1 = insertion_sort(unsorted_list3)
     sorter2 = insertion_sort(unsorted_list4)
     sorter3 = insertion_sort(unsorted_list5)
+    sorter4 = insertion_sort(unsorted_list6)
     assert sorter1 == sorted_list3
     assert sorter2 == sorted_list4
     assert sorter3 == sorted_list5
+    assert sorter4 == sorted_list6
 
 
 def test_quick_sort_string():
     sorter1 = quick_sort(unsorted_list3)
     sorter2 = quick_sort(unsorted_list4)
     sorter3 = quick_sort(unsorted_list5)
+    sorter4 = quick_sort(unsorted_list6)
     assert sorter1 == sorted_list3
     assert sorter2 == sorted_list4
     assert sorter3 == sorted_list5
+    assert sorter4 == sorted_list6
 
 
 def test_empty_list_bubble_sort():
