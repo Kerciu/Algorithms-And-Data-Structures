@@ -3,7 +3,26 @@ import time
 import gc
 
 
-# Use this as proccess_algorithm_time()[0]
+# Return list of words from txt file
+def read_file_data(path, size_to_read=None):
+    try:
+        special_characters = "!@#$%^&*()_+-=\\|]}[{\"\";:/?.>,<\'"
+
+        with open(path, 'r', encoding="utf-8") as file:
+            if size_to_read:
+                content = file.read(size_to_read)
+            else:
+                content = file.read()
+            for char in special_characters:
+                content = content.replace(char, ' ')
+            content = content.replace('\n', ' ')
+
+        return content.split()
+
+    except FileNotFoundError:
+        return []
+
+
 def process_algorithm_time(sorting_algorithm, arr):
     # Disable garbage collector
     gc_old = gc.isenabled()
