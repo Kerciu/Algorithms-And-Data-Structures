@@ -3,7 +3,7 @@ import sys
 
 
 def main():
-    sys.getrecursionlimit(1000)
+    sys.setrecursionlimit(1000)
     pass
 
 
