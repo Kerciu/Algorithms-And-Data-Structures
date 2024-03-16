@@ -6,7 +6,7 @@ import gc
 # Return list of words from txt file
 def read_file_data(path, size_to_read=None):
     try:
-        special_characters = "!@#$%^&*()_+-=\\|]}[{\"\";:/?.>,<\'"
+        special_characters = "!@#$%^&*()_+-=\\|]}[{\"\";:/?.>,<\'–—»«…"
 
         with open(path, 'r', encoding="utf-8") as file:
             if size_to_read:
