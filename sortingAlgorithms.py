@@ -24,9 +24,9 @@ def main() -> None:
         data_list: List[str] = read_file_data(PATH, elem)
 
         # Extract computing time
+        insertion_time.append(process_algorithm_time(insertion_sort, data_list))
         bubble_time.append(process_algorithm_time(bubble_sort, data_list))
         selection_time.append(process_algorithm_time(selection_sort, data_list))
-        insertion_time.append(process_algorithm_time(insertion_sort, data_list))
         merge_time.append(process_algorithm_time(merge_sort, data_list))
         quick_time.append(process_algorithm_time(quick_sort, data_list))
 
