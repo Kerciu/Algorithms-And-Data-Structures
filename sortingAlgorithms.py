@@ -5,35 +5,46 @@ from insertion_sort import insertion_sort
 from merge_sort import merge_sort
 from quick_sort import quick_sort
 from selection_sort import selection_sort
+from typing import List
 import sys
 
 
-def main():
+def main() -> None:
     PATH = "pan-tadeusz-unix.txt"
-    number_of_chars = [2000, 4000, 6000, 8000, 10000]
-    # # Read time to compute
-    # for i in range(0, len(number_of_chars)):
-    bubble_time = []
-    selection_time = []
-    insertion_time = []
-    merge_time = []
-    quick_time = []
+    number_of_chars: List[int] = [2000, 4000, 6000, 8000, 10000]
+
+    # Read time to compute
+    bubble_time: List[float] = []
+    selection_time: List[float] = []
+    insertion_time: List[float] = []
+    merge_time: List[float] = []
+    quick_time: List[float] = []
+
     for elem in number_of_chars:
-        data_list = read_file_data(PATH, elem)
+        data_list: List[str] = read_file_data(PATH, elem)
+
+        # Extract computing time
         bubble_time.append(process_algorithm_time(bubble_sort, data_list))
-        selection_time.append(process_algorithm_time(selection_sort, data_list)) # noqa 501
-        insertion_time.append(process_algorithm_time(insertion_sort, data_list)) # noqa 501
+        selection_time.append(process_algorithm_time(selection_sort, data_list))
+        insertion_time.append(process_algorithm_time(insertion_sort, data_list))
         merge_time.append(process_algorithm_time(merge_sort, data_list))
         quick_time.append(process_algorithm_time(quick_sort, data_list))
+
+    # Save info into dictionary
     bubble_info = extract_info(number_of_chars, bubble_time, "Bubble Sort")
-    selection_info = extract_info(number_of_chars, selection_time, "Selection Sort") # noqa 501
-    insertion_info = extract_info(number_of_chars, insertion_time, "Insertion Sort") # noqa 501
+    selection_info = extract_info(number_of_chars, selection_time, "Selection Sort")
+    insertion_info = extract_info(number_of_chars, insertion_time, "Insertion Sort")
     merge_info = extract_info(number_of_chars, merge_time, "Merge Sort")
     quick_info = extract_info(number_of_chars, quick_time, "Quick Sort")
-    n2_list = [bubble_info, selection_info, insertion_info]
+
+    # Draw n^2 computional complexity chart
+    n2_list: List[dict] = [bubble_info, selection_info, insertion_info]
     draw_computional_complexity(n2_list, "n^2")
-    nlogn_list = [merge_info, quick_info]
+
+    # Draw nlogn computional complexity chart
+    nlogn_list: List[dict] = [merge_info, quick_info]
     draw_computional_complexity(nlogn_list, "n*log(n)")
+
     sys.setrecursionlimit(1000)
 
 

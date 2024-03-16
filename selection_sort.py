@@ -1,8 +1,10 @@
-def selection_sort(list):
-    for i in range(len(list)):
+def selection_sort(arr: list) -> list:
+    for i in range(len(arr)):
         # capture current character
-        for j in range(i + 1, len(list)):
+        for j in range(i + 1, len(arr)):
+
             # iterate through the list above the captured character to the end
-            if list[j] < list[i]:
-                list[i], list[j] = list[j], list[i]
-    return list
+            if arr[j] < arr[i]:
+                arr[i], arr[j] = arr[j], arr[i]
+
+    return arr

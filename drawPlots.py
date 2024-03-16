@@ -1,10 +1,11 @@
 from matplotlib import pyplot as plt
+from typing import Callable, List, Any
 import time
 import gc
 
 
 # Return list of words from txt file
-def read_file_data(path, size_to_read=None):
+def read_file_data(path: str, size_to_read=None) -> list:
     try:
         special_characters = "!@#$%^&*()_+-=\\|]}[{\"\";:/?.>,<\'–—»«…"
 
@@ -23,7 +24,8 @@ def read_file_data(path, size_to_read=None):
         return []
 
 
-def process_algorithm_time(sorting_algorithm, array):
+def process_algorithm_time(sorting_algorithm: Callable[[List[Any]],
+                           None], array: list) -> float:
     # Disable garbage collector
     gc_old = gc.isenabled()
     gc.disable()
@@ -39,13 +41,13 @@ def process_algorithm_time(sorting_algorithm, array):
     return stop - start
 
 
-def extract_info(size, time, info_string):
+def extract_info(size: int, time: float, info_string: str) -> dict:
     return {info_string: [size, time]}
 
 
 # Takes in list of dictionaries
 # As an example: [{"Bubble Sort": [size, time]}, {"Merge Sort": ..]
-def draw_computional_complexity(list_of_data: list, complexity: str):
+def draw_computional_complexity(list_of_data: list, complexity: str) -> None:
     for sort_dict in list_of_data:
         for key, value in sort_dict.items():
             # value[0] == size , value[1] == sorting_time
