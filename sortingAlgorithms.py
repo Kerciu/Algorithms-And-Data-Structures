@@ -1,5 +1,10 @@
-from drawPlots import read_file_data, process_algorithm_time, extract_info, draw_computional_complexity
-import bubble_sort, insertion_sort, merge_sort, quick_sort, selection_sort
+from drawPlots import read_file_data, process_algorithm_time
+from drawPlots import extract_info, draw_computional_complexity
+from bubble_sort import bubble_sort
+from insertion_sort import insertion_sort
+from merge_sort import merge_sort
+from quick_sort import quick_sort
+from selection_sort import selection_sort
 import sys
 
 
@@ -13,11 +18,11 @@ def main():
     # for i in range(0, len(number_of_chars)):
     for elem in number_of_chars:
         data_list = read_file_data(PATH, elem)
-        bubble_time = [process_algorithm_time(bubble_sort.bubble_sort(data_list))]
-        selection_time = [process_algorithm_time(selection_sort.selection_sort(data_list))]
-        insertion_time = [process_algorithm_time(insertion_sort.insertion_sort(data_list))]
-        merge_time = [process_algorithm_time(merge_sort.merge_sort(data_list))]
-        quick_time = [process_algorithm_time(quick_sort.quick_sort(data_list))]
+        bubble_time = [process_algorithm_time(bubble_sort(data_list))]
+        selection_time = [process_algorithm_time(selection_sort(data_list))]
+        insertion_time = [process_algorithm_time(insertion_sort(data_list))]
+        merge_time = [process_algorithm_time(merge_sort(data_list))]
+        quick_time = [process_algorithm_time(quick_sort(data_list))]
 
     bub_info = extract_info(number_of_chars, bubble_time, "Bubble Sort")
     sel_info = extract_info(number_of_chars, selection_time, "Selection Sort")
