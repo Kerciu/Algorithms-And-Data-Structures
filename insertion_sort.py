@@ -1,4 +1,5 @@
 def insertion_sort(arr: list) -> list:
+    arr = arr.copy()
     for i in range(len(arr)):
 
         j = i

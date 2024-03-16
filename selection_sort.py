@@ -1,4 +1,5 @@
 def selection_sort(arr: list) -> list:
+    arr = arr.copy()
     for i in range(len(arr)):
         # capture current character
         for j in range(i + 1, len(arr)):

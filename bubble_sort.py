@@ -1,4 +1,5 @@
 def bubble_sort(arr: list) -> list:
+    arr = arr.copy()
     # Bubble sort algorithm
 
     for i in range(len(arr)):

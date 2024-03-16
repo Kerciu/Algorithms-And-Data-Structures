@@ -1,4 +1,5 @@
 def quick_sort(arr: list) -> list:
+    arr = arr.copy()
 
     if len(arr) <= 1:
         return arr

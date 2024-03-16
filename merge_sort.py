@@ -1,4 +1,5 @@
 def merge_sort(arr: list) -> list:
+    arr = arr.copy()
     list_length = len(arr)
 
     if list_length <= 1:
