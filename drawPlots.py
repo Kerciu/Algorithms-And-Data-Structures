@@ -23,14 +23,14 @@ def read_file_data(path, size_to_read=None):
         return []
 
 
-def process_algorithm_time(sorting_algorithm):
+def process_algorithm_time(sorting_algorithm, array):
     # Disable garbage collector
     gc_old = gc.isenabled()
     gc.disable()
 
     # Compute time complexity
     start = time.process_time()
-    sorting_algorithm()
+    sorting_algorithm(array)
     stop = time.process_time()
 
     if gc_old:
