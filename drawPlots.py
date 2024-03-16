@@ -46,15 +46,12 @@ def extract_info(size, time, info_string):
 # Takes in list of dictionaries
 # As an example: [{"Bubble Sort": [size, time]}, {"Merge Sort": ..]
 def draw_computional_complexity(list_of_data: list, complexity: str):
-    sizes = []
-    times = []
-    for data in list_of_data:
-        for key, value in data.items():
+    for sort_dict in list_of_data:
+        for key, value in sort_dict.items():
             # value[0] == size , value[1] == sorting_time
-            sizes.append(value[0])
-            times.append(value[1])
-    print(sizes, times)
-    plt.plot(sizes, times, "o-", label=key, markersize=5)
+            sizes = value[0]
+            times = value[1]
+            plt.plot(sizes, times, "o-", label=key, markersize=5)
     plt.xlabel("Size of Sorted Array")
     plt.ylabel("Time Needed to Compute")
     plt.xticks(rotation=30, fontsize="small")
@@ -62,4 +59,8 @@ def draw_computional_complexity(list_of_data: list, complexity: str):
     title = complexity + " Algorithms sorting time comparison"
     plt.title(label=title)
     plt.legend()
+    if complexity == "n^2":
+        plt.savefig("n2.png")
+    else:
+        plt.savefig("nlogn.png")
     plt.show()

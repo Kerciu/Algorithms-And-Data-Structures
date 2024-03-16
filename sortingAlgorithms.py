@@ -8,38 +8,33 @@ from selection_sort import selection_sort
 import sys
 
 
-PATH = "pan-tadeusz-unix.txt"
-
-
 def main():
-    number_of_chars = [1000, 2000, 5000, 7500, 10000]
-
+    PATH = "pan-tadeusz-unix.txt"
+    number_of_chars = [2000, 4000, 6000, 8000, 10000]
     # # Read time to compute
     # for i in range(0, len(number_of_chars)):
+    bubble_time = []
+    selection_time = []
+    insertion_time = []
+    merge_time = []
+    quick_time = []
     for elem in number_of_chars:
         data_list = read_file_data(PATH, elem)
-        bubble_time = [process_algorithm_time(bubble_sort(data_list))]
-        selection_time = [process_algorithm_time(selection_sort(data_list))]
-        insertion_time = [process_algorithm_time(insertion_sort(data_list))]
-        merge_time = [process_algorithm_time(merge_sort(data_list))]
-        quick_time = [process_algorithm_time(quick_sort(data_list))]
-
-    bub_info = extract_info(number_of_chars, bubble_time, "Bubble Sort")
-    sel_info = extract_info(number_of_chars, selection_time, "Selection Sort")
-    ins_info = extract_info(number_of_chars, insertion_time, "Insertion Sort")
-    mer_info = extract_info(number_of_chars, merge_time, "Merge Sort")
-    qui_info = extract_info(number_of_chars, quick_time, "Quick Sort")
-
-    # TODO n^2 chart (bubble, selection, insertion)
-    n2_list = [bub_info, sel_info, ins_info]
-    draw_computional_complexity(n2_list)
-
-    # TODO nlogn chart (merge, quick)
-    nlogn_list = [mer_info, qui_info]
-    draw_computional_complexity(nlogn_list)
-
+        bubble_time.append(process_algorithm_time(bubble_sort, data_list))
+        selection_time.append(process_algorithm_time(selection_sort, data_list)) # noqa 501
+        insertion_time.append(process_algorithm_time(insertion_sort, data_list)) # noqa 501
+        merge_time.append(process_algorithm_time(merge_sort, data_list))
+        quick_time.append(process_algorithm_time(quick_sort, data_list))
+    bubble_info = extract_info(number_of_chars, bubble_time, "Bubble Sort")
+    selection_info = extract_info(number_of_chars, selection_time, "Selection Sort") # noqa 501
+    insertion_info = extract_info(number_of_chars, insertion_time, "Insertion Sort") # noqa 501
+    merge_info = extract_info(number_of_chars, merge_time, "Merge Sort")
+    quick_info = extract_info(number_of_chars, quick_time, "Quick Sort")
+    n2_list = [bubble_info, selection_info, insertion_info]
+    draw_computional_complexity(n2_list, "n^2")
+    nlogn_list = [merge_info, quick_info]
+    draw_computional_complexity(nlogn_list, "n*log(n)")
     sys.setrecursionlimit(1000)
-    pass
 
 
 if __name__ == "__main__":
