@@ -37,8 +37,10 @@ def merge_lists(left_part: list, right_part: list) -> list:
             merged_list.append(left_part[left_index])
             left_index += 1
 
-    # Append remaining elements from the left and right parts
-    merged_list.extend(left_part[left_index:])
-    merged_list.extend(right_part[right_index:])
+    # add rest of elements which were not added in the loop
+    if left_index < left_part_length:
+        merged_list.extend(left_part[left_index:])
+    elif right_index < right_part_length:
+        merged_list.extend(right_part[right_index:])
 
     return merged_list
