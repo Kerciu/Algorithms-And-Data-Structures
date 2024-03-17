@@ -41,7 +41,7 @@ def process_algorithm_time(sorting_algorithm: Callable[[List[Any]],
     return stop - start
 
 
-def extract_info(size: int, time: float, info_string: str) -> dict:
+def extract_info(size: List[int], time: List[float], info_string: str) -> dict:
     return {info_string: [size, time]}
 
 
