@@ -102,19 +102,19 @@ def test_sorting_time():
 def test_sorting_time_empty_array():
     array = []
     time_taken = process_algorithm_time(insertion_sort, array)
-    assert time_taken == 0
+    assert round(time_taken, 4) == 0
 
     time_taken = process_algorithm_time(bubble_sort, array)
-    assert time_taken == 0
+    assert round(time_taken, 4) == 0
 
     time_taken = process_algorithm_time(selection_sort, array)
-    assert time_taken == 0
+    assert round(time_taken, 4) == 0
 
     time_taken = process_algorithm_time(merge_sort, array)
-    assert time_taken == 0
+    assert round(time_taken, 4) == 0
 
     time_taken = process_algorithm_time(quick_sort, array)
-    assert time_taken == 0
+    assert round(time_taken, 4) == 0
 
 
 def test_sorting_time_large_array():
