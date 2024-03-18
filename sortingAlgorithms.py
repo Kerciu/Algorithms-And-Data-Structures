@@ -9,6 +9,8 @@ from typing import List
 import sys
 
 
+# algorithms were written on linux
+
 def main() -> None:
     PATH = "pan-tadeusz-unix.txt"
     number_of_chars: List[int] = [2000, 4000, 6000, 8000, 10000]
