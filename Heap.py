@@ -1,3 +1,7 @@
+class NotInHeapError(Exception):
+    pass
+
+
 class Heap:
     def __init__(self, arity: int) -> None:
         self._arity = arity
@@ -37,7 +41,3 @@ class Heap:
             # Zamiana miejscami
             array[idx], array[largest] = array[largest], array[idx]
             self.heapify(largest, idx)
-
-    def build_heap(self) -> list:
-        # generate array of random elements
-        pass
