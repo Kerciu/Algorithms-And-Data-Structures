@@ -14,13 +14,11 @@ class Heap:
     def get_arity(self) -> int:
         return self._arity
 
-    @staticmethod
     def get_parent(self, idx: int) -> int:
         if idx == 0:
             raise NoParentFoundError
         return idx // self._arity
 
-    @staticmethod
     def get_children(self, idx: int) -> list:
         a = self._arity
         children = []
