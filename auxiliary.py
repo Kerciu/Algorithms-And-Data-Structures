@@ -14,7 +14,7 @@ def generate_random_list() -> List[int]:
 
 
 def process_algorithm_time(sorting_algorithm: Callable[[List[Any]],
-                           None], array: list) -> float:
+                           None], array: List[int]) -> float:
     # Disable garbage collector
     gc_old = gc.isenabled()
     gc.disable()

@@ -2,6 +2,10 @@ class NotInHeapError(Exception):
     pass
 
 
+class NoParentFoundError(Exception):
+    pass
+
+
 class Heap:
     def __init__(self, arity: int) -> None:
         self._arity = arity
@@ -11,12 +15,24 @@ class Heap:
         return self._arity
 
     @staticmethod
-    def get_parent(idx: int) -> int:
-        return idx // 2
+    def get_parent(self, idx: int) -> int:
+        if idx == 0:
+            raise NoParentFoundError
+        return idx // self._arity
 
     @staticmethod
-    def get_children(idx: int) -> int:
-        return 2 * idx, 2 * idx + 1
+    def get_children(self, idx: int) -> list:
+        a = self._arity
+        children = []
+
+        if idx == 0:
+            for j in range(1, a + 1):
+                children.append[j]
+            return children
+
+        for j in range(1, a + 1):
+            children.append(a * idx + j)
+        return children
 
     def heapify(self, array: list, idx: int) -> list:
         # largest := a
