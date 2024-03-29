@@ -1,3 +1,6 @@
+from auxiliary import generate_random_list
+
+
 class NotInHeapError(Exception):
     pass
 
@@ -25,7 +28,7 @@ class Heap:
 
         if idx == 0:
             for j in range(1, a + 1):
-                children.append[j]
+                children.append(j)
             return children
 
         for j in range(1, a + 1):
@@ -54,4 +57,35 @@ class Heap:
         if largest != idx:
             # Zamiana miejscami
             array[idx], array[largest] = array[largest], array[idx]
-            self.heapify(largest, idx)
+            self.heapify(array, idx)
+
+    @staticmethod
+    def delete_max(array: list) -> None:
+        """
+        Function deletes the maximum element from the heap.
+        Functions modifies heap through reference.
+
+        :param array: The heap represented as a list.
+        :return: None
+        """
+        size = len(array)
+        if size <= 0:
+            return
+
+        last_element = array[size - 1]      # Ostatni element kopca
+        size -= 1                       # Zmniejszamy size
+        i = 0                           # Root
+        j = 1                           # Lewy syn
+
+        while j < size:                 # Idziemy w dół kopca
+            if j + 1 < size and array[j + 1] > array[j]:    # Szukamy większego syna
+                j += 1
+            if last_element >= array[j]:    # Wyjdź z pętli jeśli warunek kopca spełniony
+                break
+            array[i] = array[j]         # Kopiuj większego syna do ojca
+            i = j                       # Pozycja większego syna
+            j = 2 * j + 1                  # Wskaźnik na lewego syna
+
+        array[i] = last_element
+        return array
+
