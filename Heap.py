@@ -1,6 +1,3 @@
-from auxiliary import generate_random_list
-
-
 class NotInHeapError(Exception):
     pass
 
@@ -77,11 +74,16 @@ class Heap:
         i = 0                           # Root
         j = 1                           # Lewy syn
 
-        while j < size:                 # Idziemy w dół kopca
-            if j + 1 < size and array[j + 1] > array[j]:    # Szukamy większego syna
+        # Idziemy w dół kopca
+        while j < size:
+            # Szukamy większego syna
+            if j + 1 < size and array[j + 1] > array[j]:
                 j += 1
-            if last_element >= array[j]:    # Wyjdź z pętli jeśli warunek kopca spełniony
+
+            if last_element >= array[j]:
+                # Wyjdź z pętli jeśli warunek kopca spełniony
                 break
+
             array[i] = array[j]         # Kopiuj większego syna do ojca
             i = j                       # Pozycja większego syna
             j = 2 * j + 1                  # Wskaźnik na lewego syna
