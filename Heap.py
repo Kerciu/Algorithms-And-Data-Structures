@@ -46,13 +46,13 @@ class Heap:
         # wywołaj rekurencyjnie Heapify(largest)
 
         largest = idx
-        left_child, right_child = self.get_children(idx)
+        children_indecies = self.get_children(idx)
         size = len(array)
 
-        if (left_child < size) and (array[left_child] > array[largest]):
-            largest = left_child
-        if (right_child < size) and (array[right_child] > array[largest]):
-            largest = right_child
+        for child_idx in children_indecies:
+
+            if (child_idx < size) and (array[child_idx] > array[largest]):
+                largest = child_idx
 
         if largest != idx:
             # Zamiana miejscami
@@ -88,4 +88,3 @@ class Heap:
 
         array[i] = last_element
         return array
-
