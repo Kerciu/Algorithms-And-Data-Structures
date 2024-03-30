@@ -26,7 +26,7 @@ class Heap:
             children.append(a * idx + j)
         return children
 
-    def heapify(self, array: list, idx: int) -> list:
+    def heapify(self, array: list, idx: int):
         # largest := a
         # jeśli 2a <= size  oraz H[2a] > H[largest], to
         # largest := 2a;
@@ -35,7 +35,6 @@ class Heap:
         # jeśli largest != a, to
         # zamień miejscami H[largest] oraz H[a]
         # wywołaj rekurencyjnie Heapify(largest)
-        array = array.copy()
         largest = idx
         children_indecies = self.get_children(idx)
         size = len(array)
@@ -49,6 +48,13 @@ class Heap:
             # Zamiana miejscami
             array[idx], array[largest] = array[largest], array[idx]
             self.heapify(array, largest)
+
+    def build_max_heap(self, array: list) -> list:
+        array = array.copy()
+        heap_size = len(array)
+        # Zaczynamy od ostatniego węzła, który ma dzieci
+        for i in range((heap_size // 2) - 1, -1, -1):
+            self.heapify(array, i)
         return array
 
     @staticmethod
@@ -87,7 +93,7 @@ class Heap:
         return array
 
 
-list_to_sort = [2, 5, 1, 3, 0, 8, 9, 6, 7, 4]
-heap = Heap(2)
-sorted_list = heap.heapify(list_to_sort, 0)
-print(sorted_list)
+list_to_sort = [2, 5, 2, 3, 0, 2, 9, 2, 7, 4]
+heap = Heap(7)
+heaped_array = heap.build_max_heap(list_to_sort)
+print(heaped_array)
