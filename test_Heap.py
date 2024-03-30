@@ -44,9 +44,9 @@ def test_Heap_sort_empty():
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert result == two_arity_heap.heapify(list_to_sort, 0)
-    assert result == five_arity_heap.heapify(list_to_sort, 0)
-    assert result == seven_arity_heap.heapify(list_to_sort, 0)
+    assert result == two_arity_heap.build_max_heap(list_to_sort)
+    assert result == five_arity_heap.build_max_heap(list_to_sort)
+    assert result == seven_arity_heap.build_max_heap(list_to_sort)
 
 
 def test_Heap_sort_one_argument():
@@ -55,31 +55,30 @@ def test_Heap_sort_one_argument():
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert result == two_arity_heap.heapify(list_to_sort, 0)
-    assert result == five_arity_heap.heapify(list_to_sort, 0)
-    assert result == seven_arity_heap.heapify(list_to_sort, 0)
+    assert result == two_arity_heap.build_max_heap(list_to_sort)
+    assert result == five_arity_heap.build_max_heap(list_to_sort)
+    assert result == seven_arity_heap.build_max_heap(list_to_sort)
 
 
 def test_Heap_sort_many_arguments():
     list_to_sort = [2, 5, 1, 3, 0, 8, 9, 6, 7, 4]
-    result = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert result == two_arity_heap.heapify(list_to_sort, 0)
-    assert result == five_arity_heap.heapify(list_to_sort, 0)
-    assert result == seven_arity_heap.heapify(list_to_sort, 0)
+    assert [9, 7, 8, 6, 4, 2, 1, 5, 3, 0] == two_arity_heap.build_max_heap(list_to_sort)
+    assert [9, 7, 1, 3, 0, 8, 5, 6, 2, 4] == five_arity_heap.build_max_heap(list_to_sort)
+    assert [9, 7, 1, 3, 0, 8, 2, 6, 5, 4] == seven_arity_heap.build_max_heap(list_to_sort)
+
 
 
 def test_Heap_sort_many_arguments_same():
     list_to_sort = [2, 5, 2, 3, 0, 2, 9, 2, 7, 4]
-    result = [9, 7, 5, 4, 3, 2, 2, 2, 2, 0]
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert result == two_arity_heap.heapify(list_to_sort, 0)
-    assert result == five_arity_heap.heapify(list_to_sort, 0)
-    assert result == seven_arity_heap.heapify(list_to_sort, 0)
+    assert [9, 7, 2, 5, 4, 2, 2, 2, 3, 0] == two_arity_heap.build_max_heap(list_to_sort)
+    assert [9, 7, 2, 3, 0, 2, 5, 2, 2, 4] == five_arity_heap.build_max_heap(list_to_sort)
+    assert [9, 7, 2, 3, 0, 2, 2, 2, 5, 4] == seven_arity_heap.build_max_heap(list_to_sort)
 
 
 def test_add_element_to_empty_heap():
