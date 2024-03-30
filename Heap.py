@@ -6,6 +6,10 @@ class NoParentFoundError(Exception):
     pass
 
 
+class EmptyHeapError(Exception):
+    pass
+
+
 class Heap:
     def __init__(self, arity: int) -> None:
         self._arity = arity
@@ -57,8 +61,7 @@ class Heap:
             self.heapify(array, i)
         return array
 
-    @staticmethod
-    def delete_max(array: list) -> None:
+    def delete_max(self, array: list) -> list:
         """
         Function deletes the maximum element from the heap.
         Functions modifies heap through reference.
@@ -68,7 +71,7 @@ class Heap:
         """
         size = len(array)
         if size <= 0:
-            return
+            raise EmptyHeapError
 
         last_element = array[size - 1]      # Ostatni element kopca
         size -= 1                       # Zmniejszamy size
@@ -92,8 +95,13 @@ class Heap:
         array[i] = last_element
         return array
 
+    def add_max(self, array: list, new_element: int) -> list:
+        array = array.copy()
+        array.append(new_element)
+        return self.build_max_heap(array)
 
-list_to_sort = [2, 5, 2, 3, 0, 2, 9, 2, 7, 4]
-heap = Heap(7)
-heaped_array = heap.build_max_heap(list_to_sort)
-print(heaped_array)
+
+heap = Heap(6)
+unsorted_list = [2, 53, 1, 3, 0, 8, 9, 6, 7, 5, 4]
+list = heap.build_max_heap(unsorted_list)
+print(heap.delete_max(list))
