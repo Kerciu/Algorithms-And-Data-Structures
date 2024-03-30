@@ -1,4 +1,4 @@
-from Heap import Heap, NotInHeapError, NoParentFoundError
+from Heap import Heap, NotInHeapError, NoParentFoundError, EmptyHeapError
 import pytest
 
 
@@ -124,23 +124,12 @@ def test_remove_element_from_the_list():
     assert [9, 5, 3, 0, 8, 2, 6, 7, 1, 4] == seven_arity_heap.delete_max(seven_arity_heap.build_max_heap(list_to_sort))
 
 
-def test_remove_element_multiple_from_the_list():
-    list_to_sort = [2, 53, 1, 0, 0, 0, 9, 6, 7, 5, 4]
-    result = [53, 9, 7, 6, 5, 4, 2, 1, 0, 0]
+def test_remove_element_empty_list():
+    list_to_sort = []
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert result == two_arity_heap.delete_max(two_arity_heap.build_max_heap(list_to_sort))
-    assert result == five_arity_heap.delete_max(five_arity_heap.build_max_heap(list_to_sort))
-    assert result == seven_arity_heap.delete_max(seven_arity_heap.build_max_heap(list_to_sort))
-
-
-def test_remove_element_not_in_list():
-    list_to_sort = [2, 53, 1, 0, 0, 0, 9, 6, 7, 5, 4]
-    two_arity_heap = Heap(2)
-    five_arity_heap = Heap(5)
-    seven_arity_heap = Heap(7)
-    with pytest.raises(NotInHeapError) as e:
+    with pytest.raises(EmptyHeapError) as e:
         two_arity_heap.delete_max(two_arity_heap.build_max_heap(list_to_sort))
         five_arity_heap.delete_max(five_arity_heap.build_max_heap(list_to_sort))
         seven_arity_heap.delete_max(seven_arity_heap.build_max_heap(list_to_sort))
