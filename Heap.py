@@ -22,12 +22,6 @@ class Heap:
     def get_children(self, idx: int) -> list:
         a = self._arity
         children = []
-
-        if idx == 0:
-            for j in range(1, a + 1):
-                children.append(j)
-            return children
-
         for j in range(1, a + 1):
             children.append(a * idx + j)
         return children
@@ -41,7 +35,7 @@ class Heap:
         # jeśli largest != a, to
         # zamień miejscami H[largest] oraz H[a]
         # wywołaj rekurencyjnie Heapify(largest)
-
+        array = array.copy()
         largest = idx
         children_indecies = self.get_children(idx)
         size = len(array)
@@ -54,7 +48,8 @@ class Heap:
         if largest != idx:
             # Zamiana miejscami
             array[idx], array[largest] = array[largest], array[idx]
-            self.heapify(array, idx)
+            self.heapify(array, largest)
+        return array
 
     @staticmethod
     def delete_max(array: list) -> None:
@@ -90,3 +85,9 @@ class Heap:
 
         array[i] = last_element
         return array
+
+
+list_to_sort = [2, 5, 1, 3, 0, 8, 9, 6, 7, 4]
+heap = Heap(2)
+sorted_list = heap.heapify(list_to_sort, 0)
+print(sorted_list)
