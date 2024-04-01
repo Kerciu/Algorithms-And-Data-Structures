@@ -1,7 +1,5 @@
-from typing import Callable, List, Any
+from typing import List
 from matplotlib import pyplot as plt
-import gc
-import time
 import random
 
 
@@ -13,22 +11,13 @@ def generate_random_list() -> List[int]:
     return unheapified_array
 
 
-def process_algorithm_time(sorting_algorithm: Callable[[List[Any]],
-                           None], array: List[int]) -> float:
-    # Disable garbage collector
-    gc_old = gc.isenabled()
-    gc.disable()
+def plotter(x_value, y_value, process):
+    plt.plot(x_value, y_value, label=f"{process.capitalize()}")
+    plt.xlabel(f"Integers to {process}")
+    plt.ylabel("Time to compute")
 
-    # Compute time complexity
-    start = time.process_time()
-    sorting_algorithm(array)
-    stop = time.process_time()
+    plt.title(f"Computing time needed to {process}")
+    plt.grid()
 
-    if gc_old:
-        gc.enable()
-
-    return stop - start
-
-
-def plotter():
-    pass
+    plt.savefig(f"{process}.png")
+    plt.show()
