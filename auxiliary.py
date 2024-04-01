@@ -9,7 +9,7 @@ def generate_random_list() -> List[int]:
     # generate array of random elements
     unheapified_array: List[int] = []
     for i in range(1, 1000000):
-        unheapified_array.append(random.randint(1, 3000000))
+        unheapified_array.append(random.randint(1, 10000))
     return unheapified_array
 
 
@@ -39,5 +39,6 @@ def plotter(data: dict, process: str) -> None:
     plt.title(f'Computing time for {process} function')
     plt.xlabel('Number of integers processed')
     plt.ylabel('Time')
-
+    filename = process + ".png"
+    plt.savefig(filename)
     plt.show()
