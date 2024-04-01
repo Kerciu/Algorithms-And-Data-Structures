@@ -28,13 +28,16 @@ def process_algorithm_time(process, *args, **kwargs) -> float:
     return stop - start
 
 
-def plotter(x_value: List[int], y_value: List[float], process: str) -> None:
-    plt.plot(x_value, y_value, label=f"{process.capitalize()}")
-    plt.xlabel(f"Integers to {process}")
-    plt.ylabel("Time to compute")
+def plotter(data: dict, process: str) -> None:
+    plt.figure()
 
-    plt.title(f"Computing time needed to {process}")
-    plt.grid()
+    for arity, (x, y) in data.items():
+        plt.plot(x, y, label=arity)
 
-    plt.savefig(f"{process}.png")
+    plt.legend()
+
+    plt.title(f'Computing time for {process} function')
+    plt.xlabel('Number of integers processed')
+    plt.ylabel('Time')
+
     plt.show()
