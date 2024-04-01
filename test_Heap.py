@@ -115,13 +115,13 @@ def test_add_element_not_root():
 
 
 def test_remove_element_from_the_list():
-    list_to_sort = [2, 53, 1, 3, 0, 8, 9, 6, 7, 5, 4]
+    list_to_sort = [2, 53, 1, 3, 0, 8, 9, 6, 7, 5, 4, 15, 4, 123, 432, 21, 6, 87, 10, 23, 11, 19]
     two_arity_heap = Heap(2)
     five_arity_heap = Heap(5)
     seven_arity_heap = Heap(7)
-    assert [9, 7, 8, 6, 5, 4, 1, 2, 3, 0, 4] == two_arity_heap.delete_max(two_arity_heap.build_max_heap(list_to_sort))
-    assert [9, 4, 1, 3, 0, 8, 2, 6, 7, 5, 4] == five_arity_heap.delete_max(five_arity_heap.build_max_heap(list_to_sort))
-    assert [9, 5, 3, 0, 8, 2, 6, 7, 1, 4] == seven_arity_heap.delete_max(seven_arity_heap.build_max_heap(list_to_sort))
+    assert [123, 87, 15, 53, 23, 8, 9, 21, 10, 11, 19, 4, 4, 1, 2, 6, 6, 7, 3, 5, 0] == two_arity_heap.delete_max(two_arity_heap.build_max_heap(list_to_sort))
+    assert [123, 53, 21, 87, 19, 8, 9, 6, 7, 5, 4, 15, 4, 2, 1, 0, 6, 3, 10, 23, 11] == five_arity_heap.delete_max(five_arity_heap.build_max_heap(list_to_sort))
+    assert [123, 53, 87, 3, 0, 8, 9, 6, 7, 5, 4, 15, 4, 2, 19, 21, 6, 1, 10, 23, 11] == seven_arity_heap.delete_max(seven_arity_heap.build_max_heap(list_to_sort))
 
 
 def test_remove_element_empty_list():

@@ -62,46 +62,18 @@ class Heap:
         return array
 
     def delete_max(self, array: list) -> list:
-        """
-        Function deletes the maximum element from the heap.
-        Functions modifies heap through reference.
-
-        :param array: The heap represented as a list.
-        :return: None
-        """
-        size = len(array)
-        if size <= 0:
+        array = array.copy()
+        if len(array) <= 0:
             raise EmptyHeapError
 
-        last_element = array[size - 1]      # Ostatni element kopca
-        size -= 1                       # Zmniejszamy size
-        i = 0                           # Root
-        j = 1                           # Lewy syn
+        max_element = array[0]
+        array[0] = array[-1]
+        array[-1] = max_element
 
-        # Idziemy w dół kopca
-        while j < size:
-            # Szukamy większego syna
-            if j + 1 < size and array[j + 1] > array[j]:
-                j += 1
-
-            if last_element >= array[j]:
-                # Wyjdź z pętli jeśli warunek kopca spełniony
-                break
-
-            array[i] = array[j]         # Kopiuj większego syna do ojca
-            i = j                       # Pozycja większego syna
-            j = 2 * j + 1                  # Wskaźnik na lewego syna
-
-        array[i] = last_element
-        return array
+        max_element = array.pop()
+        return self.build_max_heap(array)
 
     def add_max(self, array: list, new_element: int) -> list:
         array = array.copy()
         array.append(new_element)
         return self.build_max_heap(array)
-
-
-heap = Heap(6)
-unsorted_list = [2, 53, 1, 3, 0, 8, 9, 6, 7, 5, 4]
-list = heap.build_max_heap(unsorted_list)
-print(heap.delete_max(list))
