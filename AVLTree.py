@@ -1,9 +1,7 @@
 from dataclasses import dataclass
+from BSTTree import BSTTree
 
 
 @dataclass
-class AlTree:
-    val: int
-    left: int
-    right: int
+class AlTree(BSTTree):
     bal: int        # {-1, 0, 1}
