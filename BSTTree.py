@@ -14,11 +14,64 @@
 #  New element will always be a "leaf"
 #
 from dataclasses import dataclass
+from BSTNode import BSTNode
+from typing import Optional
 
 
 @dataclass
 class BSTTree:
-    val: int
-    left: int
-    right: int
+    root: Optional["BSTNode"] = None
 
+    def succesor(root: BSTNode):
+        pass
+
+    def predecesor(root: BSTNode):
+        pass
+
+    # --------------------------------------------------
+    #                  Element Search
+    # --------------------------------------------------
+    def searchForElememt(node: BSTNode) -> int:
+        pass
+
+    def searchHelper(root: BSTNode, node: BSTNode) -> BSTNode:
+        pass
+
+    # --------------------------------------------------
+    #                  Insert Element
+    # --------------------------------------------------
+
+    def insertElement(self, node: BSTNode) -> None:
+        self.root = self.insertHelper(self.root, node)
+
+    def insertHelper(self, root: BSTNode, node: BSTNode) -> BSTNode:
+        # TODO If element in tree, do not instert
+        # If none return root
+        if root is None:
+            root = node
+            return root
+
+        # We are going to the left node
+        elif root.val > node.val:
+            root.left = self.insertHelper(root.left, node)
+
+        # We are going to the right node
+        elif root.val < node.val:
+            root.right = self.insertHelper(root.right, node)
+
+        return root
+
+    def deleteElement(node: BSTNode) -> None:
+        pass
+
+    def deleteHelper(root: BSTNode, node: BSTNode) -> BSTNode:
+        pass
+
+    def displayTree(self) -> None:
+        self.displayHelper(self.root)
+
+    def displayHelper(self, root: BSTNode) -> None:
+        if root is not None:
+            self.displayHelper(root.left)
+            print(root.val)
+            self.displayHelper(root.right)
