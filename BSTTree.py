@@ -96,3 +96,28 @@ class BSTTree:
         while current_node.right:
             current_node = current_node.right
         return current_node
+
+    def print_tree(self):
+        self._print_tree_horizontal(self.root, 0)
+
+    def _print_tree_horizontal(self, node, indent):
+        if node is not None:
+            self._print_tree_horizontal(node.right, indent + 4)
+            print(' ' * indent + str(node.value))
+            self._print_tree_horizontal(node.left, indent + 4)
+
+
+bst = BSTTree()
+bst.insert(10)
+bst.insert(7)
+bst.insert(13)
+bst.insert(4)
+bst.insert(9)
+bst.insert(11)
+bst.insert(3)
+bst.insert(5)
+bst.insert(12)
+bst.insert(6)
+bst.delete(4)
+# Print the binary search tree structure vertically
+bst.print_tree()
