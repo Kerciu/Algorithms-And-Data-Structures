@@ -22,11 +22,20 @@ from typing import Optional
 class BSTTree:
     root: Optional["BSTNode"] = None
 
-    def succesor(root: BSTNode):
-        pass
+    def successor(self, root: BSTNode) -> int:
+        # Find the least value below the right child of this root node
+        root = root.right
+        while root.left is not None:
+            root = root.left
 
-    def predecesor(root: BSTNode):
-        pass
+        return root.val
+
+    def predecessor(self, root: BSTNode) -> int:
+        root = root.left
+        while root.right is not None:
+            root = root.right
+        
+        return root.val
 
     # --------------------------------------------------
     #                  Element Search
@@ -57,7 +66,7 @@ class BSTTree:
         # TODO If element in tree, do not instert
         if self.searchForElememt(node):
             return root
-        
+
         # If none return root
         if root is None:
             root = node
@@ -73,11 +82,49 @@ class BSTTree:
 
         return root
 
-    def deleteElement(node: BSTNode) -> None:
-        pass
+    # --------------------------------------------------
+    #                  Delete Element
+    # --------------------------------------------------
 
-    def deleteHelper(root: BSTNode, node: BSTNode) -> BSTNode:
-        pass
+    def deleteElement(self, key: int) -> None:
+        if self.searchForElememt(key):
+            self.deleteHelper(self.root, key)
+
+    def deleteHelper(self, root: BSTNode, key: int) -> BSTNode:
+        if root is None:
+            return None
+
+        elif root.val > key:
+            root.left = self.deleteHelper(root.left, key)
+
+        elif root.val < key:
+            root.right = self.deleteHelper(root.left, key)
+
+        # We have found the node
+        else:
+            # We are deleting a leaf node
+            if root.left is None and root.right is None:
+                del root
+
+            # Find a succesor to replace this node
+            elif root.right is not None:
+                # If the node has right child we find successor to fill that gap
+                # The successor shall have the least value
+                root.val = self.successor(root)
+                root.right = self.deleteHelper(root, key)
+
+            # Find a predecessor to replace this node
+            elif root.left is not None:
+                # If the node has left child we find predecessor to fill that gap
+                # The predecessor shall have the greatest value
+                root.val = self.predecessor(root)
+                root.left = self.deleteHelper(root, key)
+        
+        return root
+
+    # --------------------------------------------------
+    #                 Display Element
+    # --------------------------------------------------
 
     def displayTree(self) -> None:
         self.displayHelper(self.root)
