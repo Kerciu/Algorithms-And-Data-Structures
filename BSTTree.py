@@ -31,11 +31,20 @@ class BSTTree:
     # --------------------------------------------------
     #                  Element Search
     # --------------------------------------------------
-    def searchForElememt(node: BSTNode) -> int:
-        pass
+    def searchForElememt(self, node: BSTNode) -> bool:
+        return self.searchHelper(node)
 
-    def searchHelper(root: BSTNode, node: BSTNode) -> BSTNode:
-        pass
+    def searchHelper(self, root: BSTNode, data: int) -> BSTNode:
+        if root is None:
+            return False
+
+        elif root.val == data:
+            return True
+
+        elif root.val > data:
+            self.searchHelper(root.left, data)
+        else:
+            self.searchHelper(root.right, data)
 
     # --------------------------------------------------
     #                  Insert Element
@@ -46,6 +55,9 @@ class BSTTree:
 
     def insertHelper(self, root: BSTNode, node: BSTNode) -> BSTNode:
         # TODO If element in tree, do not instert
+        if self.searchForElememt(node):
+            return root
+        
         # If none return root
         if root is None:
             root = node
