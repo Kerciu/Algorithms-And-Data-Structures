@@ -1,42 +1,38 @@
-from BSTTree import BSTTree
 from BSTNode import BSTNode
 import random
 
 
 def test_create_tree():
-    tree = BSTTree()
-    values = [5, 3, 8, 2, 4, 7, 10]
+    tree = BSTNode(5)
+    values = [3, 8, 2, 4, 7, 10]
     for val in values:
-        tree.insertElement(BSTNode(val))
+        tree.insert(val)
 
-    assert tree.root.val == 5
-    assert tree.root.left.val == 3
-    assert tree.root.right.val == 8
-    assert tree.root.left.left.val == 2
-    assert tree.root.left.right.val == 4
-    assert tree.root.right.left.val == 7
-    assert tree.root.right.right.val == 10
+    assert tree.value == 5
+    assert tree.left.value == 3
+    assert tree.right.value == 8
+    assert tree.left.left.value == 2
+    assert tree.left.right.value == 4
+    assert tree.right.left.value == 7
+    assert tree.right.right.value == 10
 
 
 def test_search_for_element():
-    tree = BSTTree()
-    tree_empty = BSTTree()
-    vals = [i for i in range(1, 11)]
+    tree = BSTNode(10)
+    vals = [i for i in range(1, 10)]
     random.shuffle([vals])
     for val in vals:
-        tree.insertElement(BSTNode(val))
+        tree.insert(val)
 
-    assert tree.searchForElememt(5) is True
-    assert tree.searchForElememt(11) is False
-    assert tree_empty.searchForElememt(200) is False
+    assert tree.search(5) is True
+    assert tree.search(11) is False
 
 
 def test_find_successor():
-    tree = BSTTree()
-    values = [5, 3, 8, 2, 4, 7, 10]
+    tree = BSTNode(5)
+    values = [3, 8, 2, 4, 7, 10]
     for val in values:
-        tree.insertElement(BSTNode(val))
-
+        tree.insert(val)
     assert tree.successor(tree.root) == 7
 
 
