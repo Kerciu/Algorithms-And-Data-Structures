@@ -3,4 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class BSTNode:
-    pass
+    val: int
+    left: Optional["BSTNode"] = None
+    right: Optional["BSTNode"] = None
+
