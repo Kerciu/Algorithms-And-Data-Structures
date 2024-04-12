@@ -10,9 +10,7 @@
 #        / \
 #      4.5  6
 #
-#  Difference in height between left and right tree in AVL tree must be equal to 1
-#  New element will always be a "leaf"
-#
+
 from dataclasses import dataclass
 from BSTNode import BSTNode
 from typing import Optional
@@ -40,8 +38,9 @@ class BSTTree:
     # --------------------------------------------------
     #                  Element Search
     # --------------------------------------------------
-    def searchForElememt(self, node: BSTNode) -> bool:
-        return self.searchHelper(node)
+
+    def searchForElememt(self, data: int) -> bool:
+        return self.searchHelper(data)
 
     def searchHelper(self, root: BSTNode, data: int) -> BSTNode:
         if root is None:
@@ -60,24 +59,26 @@ class BSTTree:
     # --------------------------------------------------
 
     def insertElement(self, node: BSTNode) -> None:
-        self.root = self.insertHelper(self.root, node)
-
-    def insertHelper(self, root: BSTNode, node: BSTNode) -> BSTNode:
-        # TODO If element in tree, do not instert
-        if self.searchForElememt(node):
-            return root
-
+        
         # If none return root
         if root is None:
             root = node
-            return root
+
+        # If element in tree, do not instert
+        if not self.searchForElememt(node.val):
+            self.root = self.insertHelper(self.root, node)
+
+    def insertHelper(self, root: BSTNode, node: BSTNode) -> BSTNode:
+
+        if root is None:
+            return node
 
         # We are going to the left node
         elif root.val > node.val:
             root.left = self.insertHelper(root.left, node)
 
         # We are going to the right node
-        elif root.val < node.val:
+        else:
             root.right = self.insertHelper(root.right, node)
 
         return root
@@ -134,3 +135,5 @@ class BSTTree:
             self.displayHelper(root.left)
             print(root.val)
             self.displayHelper(root.right)
+
+    # --------------------------------------------------
