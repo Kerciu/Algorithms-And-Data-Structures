@@ -96,7 +96,7 @@ def test_avl_getHeight():
     avl_tree.insert(10)
     avl_tree.insert(20)
     avl_tree.insert(30)
-    assert avl_tree.getHeight(avl_tree.root) == 1
+    assert avl_tree.getHeight(avl_tree.root) == 2
 
 
 def test_avl_getBalance():
@@ -114,5 +114,5 @@ def test_avl_coordinateBalance():
     avl_tree.insert(30)
     assert avl_tree.getBalance(avl_tree.root) == 0
     assert avl_tree.getHeight(avl_tree.root) == 2
-    assert avl_tree.getHeight(avl_tree.root.left) == 0
+    assert avl_tree.getHeight(avl_tree.root.left) == 1
     assert avl_tree.getHeight(avl_tree.root.right) == 1
