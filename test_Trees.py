@@ -1,5 +1,5 @@
 from BSTTree import BSTTree
-
+from AVLTree import AvlTree
 
 def test_create_tree():
     tree = BSTTree()
@@ -58,3 +58,61 @@ def test_delete_element():
     assert tree.search(3) is False
     assert tree.search(8) is False
     assert tree.search(5) is False
+
+
+def test_avl_insert_balance():
+    avl_tree = AvlTree()
+    avl_tree.insert(10)
+    avl_tree.insert(5)
+    avl_tree.insert(15)
+    avl_tree.insert(3)
+    avl_tree.insert(7)
+    avl_tree.insert(12)
+    avl_tree.insert(17)
+    
+    assert avl_tree.getBalance(avl_tree.root) == 0
+    assert avl_tree.getHeight(avl_tree.root) == 3
+    assert avl_tree.getHeight(avl_tree.root.left) == 2
+    assert avl_tree.getHeight(avl_tree.root.right) == 2
+    assert avl_tree.getHeight(avl_tree.root.left.left) == 1
+    assert avl_tree.getHeight(avl_tree.root.left.right) == 1
+    assert avl_tree.getHeight(avl_tree.root.right.left) == 1
+    assert avl_tree.getHeight(avl_tree.root.right.right) == 1
+
+
+def test_avl_rotations():
+    avl_tree = AvlTree()
+    avl_tree.insert(10)
+    avl_tree.insert(20)
+    avl_tree.insert(30)
+
+    assert avl_tree.root.value == 20
+    assert avl_tree.root.right.value == 30
+    assert avl_tree.root.left.value == 10
+
+
+def test_avl_getHeight():
+    avl_tree = AvlTree()
+    avl_tree.insert(10)
+    avl_tree.insert(20)
+    avl_tree.insert(30)
+    assert avl_tree.getHeight(avl_tree.root) == 1
+
+
+def test_avl_getBalance():
+    avl_tree = AvlTree()
+    avl_tree.insert(10)
+    avl_tree.insert(20)
+    avl_tree.insert(30)
+    assert avl_tree.getBalance(avl_tree.root) == 0
+
+
+def test_avl_coordinateBalance():
+    avl_tree = AvlTree()
+    avl_tree.insert(10)
+    avl_tree.insert(20)
+    avl_tree.insert(30)
+    assert avl_tree.getBalance(avl_tree.root) == 0
+    assert avl_tree.getHeight(avl_tree.root) == 2
+    assert avl_tree.getHeight(avl_tree.root.left) == 0
+    assert avl_tree.getHeight(avl_tree.root.right) == 1
