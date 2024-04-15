@@ -40,7 +40,7 @@ class BSTTree:
             else:
                 self.insert_recursion(value, root.right)
         else:
-            print("Number exists in the tree")
+            return root
 
     def search(self, value):
         if not self.root:
