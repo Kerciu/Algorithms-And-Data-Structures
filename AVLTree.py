@@ -41,7 +41,16 @@ class AvlTree(BSTTree):
         return root
 
     def rightRotation(self, root):
-        pass
+        B = root.right
+        P = root
+
+        root.right = B.left
+        B.left = P
+
+        P.height = max(self.getHeight(P.left), self.getHeight(P.right)) + 1
+        B.height = max(self.getHeight(B.left), self.getHeight(B.right)) + 1
+
+        return B
 
     def leftRotation(self, root):
         pass
