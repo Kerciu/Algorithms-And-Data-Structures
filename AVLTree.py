@@ -5,7 +5,7 @@ from AVLNode import AVLNode
 
 
 @dataclass
-class AvlTree(BSTTree):
+class AvlTree:
     root: Optional["AVLNode"] = None
 
     def insert(self, key):
@@ -23,6 +23,9 @@ class AvlTree(BSTTree):
         root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right))
 
         return self.coordinateBalance(root, key)
+    
+    def search(self, key):
+        pass
 
     def getHeight(self, root):
         return root.height if root else 0
@@ -75,3 +78,12 @@ class AvlTree(BSTTree):
         y.height = 1 + max(self.getHeight(y.left),
                            self.getHeight(y.right))
         return y
+
+    def print_tree(self):
+        self._print_tree_horizontal(self.root, 0)
+
+    def _print_tree_horizontal(self, node, indent):
+        if node is not None:
+            self._print_tree_horizontal(node.right, indent + 4)
+            print(' ' * indent + str(node.value))
+            self._print_tree_horizontal(node.left, indent + 4)
