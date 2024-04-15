@@ -12,21 +12,29 @@ class AvlTree(BSTTree):
         self.root = self.insertHelper(self.root, key)
 
     def insertHelper(self, root, key):
-        root = super().insert_recursion(key, root)
+        if root is None:
+            return AVLNode(key)
 
-        return self.balance(root)
+        if key < root.value:
+            root.left = self.insertHelper(root.left, key)
+        elif key > root.value:
+            root.right = self.insertHelper(root.right, key)
+
+        root.height = max(self.getHeight(root.left), self.getHeight(root.right)) + 1
+
+        return self.coordinateBalance(root)
 
     def getHeight(self, root):
-        return root.height if root is not None else 0
+        return root.height if root else 0
 
     def getBalance(self, root):
-        return root.left.height - root.right.height if root is not None else 0
+        return self.getHeight(root.left) - self.getHeight(root.right) if root else 0
 
     def coordinateBalance(self, root):
         if root is None:
             return None
 
-        root.height = max(root.left.height, root.right.height) + 1
+        root.height = max(self.getHeight(root.left), self.getHeight(root.right)) + 1
         balance = self.getBalance(root)
 
         if balance > 1:
@@ -35,7 +43,7 @@ class AvlTree(BSTTree):
             return self.rightRotation(root)
         elif balance < -1:
             if self.getBalance(root.right) < 0:
-                root.left = self.rightRotation(root.right)
+                root.right = self.rightRotation(root.right)
             return self.leftRotation(root)
 
         return root
@@ -53,4 +61,13 @@ class AvlTree(BSTTree):
         return B
 
     def leftRotation(self, root):
-        pass
+        B = root.left
+        P = root
+
+        root.left = B.right
+        B.right = P
+
+        P.height = max(self.getHeight(P.left), self.getHeight(P.right)) + 1
+        B.height = max(self.getHeight(B.left), self.getHeight(B.right)) + 1
+
+        return B
