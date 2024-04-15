@@ -38,7 +38,7 @@ def search_tree_elements(array, tree, step=1000):
 
     for i in range(step, len(array) + 1, step):
         subset_array = array[:i]
-        time = auxiliaryModule.process_algorithm_time(lambda: delete_batch(tree, subset_array))
+        time = auxiliaryModule.process_algorithm_time(lambda: search_batch(tree, subset_array))
         time_table.append((i, time))
 
     return time_table
@@ -70,5 +70,5 @@ if __name__ == "__main__":
     table_avl_search = search_tree_elements(list_for_trees.copy(), AVL_tree)
 
     auxiliaryModule.draw_computional_complexity([table_bst_insert, table_avl_insert], "BST and AVL trees insertion", plots=2)
-    auxiliaryModule.draw_computional_complexity([table_bst_search, table_avl_search], "BST and AVL trees insertion", plots=2)
-    
+    auxiliaryModule.draw_computional_complexity([table_bst_search, table_avl_search], "BST and AVL trees search", plots=2)
+    auxiliaryModule.draw_computional_complexity(table_bst_delete, "BST tree deletion", plots=1)
