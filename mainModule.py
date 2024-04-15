@@ -3,42 +3,17 @@ from AVLTree import AvlTree
 import auxiliaryModule
 
 
-def insert_tree_elements(array, tree, step=1000):
+def perform_operations_on_tree(array, tree, operation, step=1000, fill_already=False):
     time_table = []
 
-    for i in range(step, len(array) + 1, step):
-        subset_array = array[:i]
-        time = auxiliaryModule.process_algorithm_time(lambda: insert_batch(tree, subset_array))
-        time_table.append((i, time))
-
-    return time_table
-
-
-def delete_tree_elements(array, tree, step=1000):
-    time_table = []
+    if fill_already:
+        for i in range(step, len(array) + 1, step):
+            subset_array = array[:i]
+            insert_batch(tree, subset_array)
 
     for i in range(step, len(array) + 1, step):
         subset_array = array[:i]
-        insert_batch(tree, subset_array)
-
-    for i in range(step, len(array) + 1, step):
-        subset_array = array[:i]
-        time = auxiliaryModule.process_algorithm_time(lambda: delete_batch(tree, subset_array))
-        time_table.append((i, time))
-
-    return time_table
-
-
-def search_tree_elements(array, tree, step=1000):
-    time_table = []
-
-    for i in range(step, len(array) + 1, step):
-        subset_array = array[:i]
-        insert_batch(tree, subset_array)
-
-    for i in range(step, len(array) + 1, step):
-        subset_array = array[:i]
-        time = auxiliaryModule.process_algorithm_time(lambda: search_batch(tree, subset_array))
+        time = auxiliaryModule.process_algorithm_time(lambda: operation(tree, subset_array))
         time_table.append((i, time))
 
     return time_table
@@ -63,11 +38,11 @@ if __name__ == "__main__":
     BST_tree = BSTTree()
     AVL_tree = AvlTree()
     list_for_trees = auxiliaryModule.generate_list()
-    table_bst_insert = insert_tree_elements(list_for_trees.copy(), BST_tree)
-    table_bst_delete = delete_tree_elements(list_for_trees.copy(), BST_tree)
-    table_avl_insert = insert_tree_elements(list_for_trees.copy(), AVL_tree)
-    table_bst_search = search_tree_elements(list_for_trees.copy(), BST_tree)
-    table_avl_search = search_tree_elements(list_for_trees.copy(), AVL_tree)
+    table_bst_insert = perform_operations_on_tree(list_for_trees.copy(), BST_tree, insert_batch)
+    table_bst_delete = perform_operations_on_tree(list_for_trees.copy(), BST_tree, delete_batch, fill_already=True)
+    table_avl_insert = perform_operations_on_tree(list_for_trees.copy(), AVL_tree, insert_batch)
+    table_bst_search = perform_operations_on_tree(list_for_trees.copy(), BST_tree, search_batch, fill_already=True)
+    table_avl_search = perform_operations_on_tree(list_for_trees.copy(), AVL_tree, search_batch, fill_already=True)
 
     auxiliaryModule.draw_computional_complexity([table_bst_insert, table_avl_insert], "BST and AVL trees insertion", plots=2)
     auxiliaryModule.draw_computional_complexity([table_bst_search, table_avl_search], "BST and AVL trees search", plots=2)
