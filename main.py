@@ -13,7 +13,7 @@ if __name__ == "__main__":
     plot_functions.draw_plot(n_values, "BST and AVL trees search", full_bst_tree, full_avl_tree, "search")
     plot_functions.draw_plot_deletion(n_values, "BST tree deletion", full_bst_tree,)
     new_BST = plot_functions.create_full_bst_tree(10)
-    new_AVL = plot_functions.create_full_bst_tree(10)
+    new_AVL = plot_functions.create_full_avl_tree(10)
     print("Graphical representation of BST Tree: \n")
     new_BST.print_tree()
     print("\nGraphical representation of AVL Tree: \n")
