@@ -22,6 +22,11 @@ class BSTTree:
     def __init__(self):
         self.root = None
 
+    def copy(self):
+        new_tree = BSTTree()
+        new_tree.root = self.root
+        return new_tree
+
     def insert(self, value):
         if self.root is None:
             self.root = BSTNode(value)
@@ -79,9 +84,10 @@ class BSTTree:
                 return root.left
 
             # Node has two children, find successor and replace value
-            successor = self.find_successor(root.right)
-            root.value = successor.value
-            root.right = self.delete_recursion(successor.value, root.right)
+            else:
+                successor = self.find_successor(root.right)
+                root.value = successor.value
+                root.right = self.delete_recursion(successor.value, root.right)
 
         return root
 
@@ -105,19 +111,3 @@ class BSTTree:
             self._print_tree_horizontal(node.right, indent + 4)
             print(' ' * indent + str(node.value))
             self._print_tree_horizontal(node.left, indent + 4)
-
-
-# bst = BSTTree()
-# bst.insert(10)
-# bst.insert(7)
-# bst.insert(13)
-# bst.insert(4)
-# bst.insert(9)
-# bst.insert(11)
-# bst.insert(3)
-# bst.insert(5)
-# bst.insert(12)
-# bst.insert(6)
-# bst.delete(55)
-# bst.print_tree()
-# print(bst.search(6))
