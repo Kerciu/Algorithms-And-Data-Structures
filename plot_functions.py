@@ -70,10 +70,10 @@ def create_time_list(n_list: list[list[float]], tree, operation_name: str) -> li
     return average_times_list
 
 
-def draw_plot(n_values: list[int], title: str, bst_tree: BSTTree, avl_tree: AvlTree, operation_name: str):
+def draw_plot(n_values: list[int], generated_list: list[int], title: str, bst_tree: BSTTree, avl_tree: AvlTree, operation_name: str):
     n_list = []
     for n in n_values:
-        n_list.append(generate_list(30000, n))
+        n_list.append(generated_list[:n])
     bst_times = create_time_list(n_list, bst_tree, operation_name)
     avl_times = create_time_list(n_list, avl_tree, operation_name)
     plt.plot(n_values, bst_times, "o-", markersize=5, label="BST Tree")
@@ -88,10 +88,10 @@ def draw_plot(n_values: list[int], title: str, bst_tree: BSTTree, avl_tree: AvlT
     plt.show()
 
 
-def draw_plot_deletion(n_values: list[int], title: str, bst_tree: BSTTree):
+def draw_plot_deletion(n_values: list[int], generated_list: list[int], title: str, bst_tree: BSTTree):
     n_list = []
     for n in n_values:
-        n_list.append(generate_list(30000, n))
+        n_list.append(generated_list[:n])
     bst_times = create_time_list(n_list, bst_tree, "delete")
     plt.plot(n_values, bst_times, "o-", markersize=5, label="BST Tree")
     plt.xlabel("Size of Array")
