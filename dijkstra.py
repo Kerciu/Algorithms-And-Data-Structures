@@ -28,35 +28,66 @@ class Dijkstra:
             raise WrongDataProvided("Wrong data provided")
 
     def minimumDistance(self, Distance, Q):
-        min = float("inf")
+        minDistance = float("inf")
         minIdx = None
 
         for v in Q:
-            if Distance[v] < min:
-                min = Distance[v]
+            if Distance[v - 1] < minDistance:
+                minDistance = Distance[v - 1]
                 minIdx = v
 
         return minIdx
 
     def findShortestPath(self):
+        """
+        Returns dictionary of costs to each 
+        """
         length = self.graph.computeVertecies()
-
         Vertecies = list(self.graph.content.keys())              # All the vertecies of the graph
         Distance = [float("inf")] * length                       # Path cost table
         Predecessors = [-1] * length                             # Predeccessor table
 
-        Distance[self.source] = 0
-
+        Distance[self.source - 1] = 0
         actualVertecies = set(Vertecies)
+
         while actualVertecies:
-            u = self.minimumDistance(actualVertecies)
+
+            u = self.minimumDistance(Distance, actualVertecies)
             actualVertecies.remove(u)
 
-            for item in self.graph.content[u]:
-                v = item[0]
-                weight = item[1]
-                if Distance[v] > Distance[u] + weight:
-                    Distance[v] = Distance[u] + weight
-                    Predecessors[v] = u
+            for v, weight in self.graph.content[u]:
 
-        return Distance, Predecessors
+                if Distance[v - 1] > Distance[u - 1] + weight:
+                    Distance[v - 1] = Distance[u - 1] + weight
+                    Predecessors[v - 1] = u
+
+        shortestPaths = {}
+        for i in range(length):
+            vertex = i + 1
+            path = []
+
+            while vertex != -1:
+                path.append(vertex)
+                vertex = Predecessors[vertex - 1]
+            
+            path.reverse()
+            shortestPaths[i + 1] = {"Path": path, "Cost": Distance[i]}
+
+        return shortestPaths
+
+
+if __name__ == "__main__":
+    dataGraph = {
+        1: [(2, 10), (3, 15), (4, 20)],
+        2: [(5, 25)],
+        3: [(6, 5)],
+        4: [(7, 10)],
+        5: [(8, 15)],
+        6: [(8, 20)],
+        7: [(8, 25)],
+        8: []
+        }
+    graph = Graph(dataGraph)
+    pathFinder = Dijkstra(graph, 1, 4)
+
+    print(pathFinder.findShortestPath())
