@@ -27,7 +27,7 @@ class Dijkstra:
         if not destinationFound or not sourceFound:
             raise WrongDataProvided("Wrong data provided")
 
-    def minimumDistance(self, Distance, Q):
+    def _minimumDistance(self, Distance, Q):
         minDistance = float("inf")
         minIdx = None
 
@@ -37,6 +37,21 @@ class Dijkstra:
                 minIdx = v
 
         return minIdx
+
+    def _prettifyOutput(self, Distance, Predecessors, length):
+        shortestPaths = {}
+        for i in range(length):
+            vertex = i + 1
+            path = []
+
+            while vertex != -1:
+                path.append(vertex)
+                vertex = Predecessors[vertex - 1]
+     
+            path.reverse()
+            shortestPaths[i + 1] = {"Path": path, "Cost": Distance[i]}
+
+        return shortestPaths
 
     def findShortestPath(self):
         """
@@ -52,7 +67,7 @@ class Dijkstra:
 
         while actualVertecies:
 
-            u = self.minimumDistance(Distance, actualVertecies)
+            u = self._minimumDistance(Distance, actualVertecies)
             actualVertecies.remove(u)
 
             for v, weight in self.graph.content[u]:
@@ -61,19 +76,7 @@ class Dijkstra:
                     Distance[v - 1] = Distance[u - 1] + weight
                     Predecessors[v - 1] = u
 
-        shortestPaths = {}
-        for i in range(length):
-            vertex = i + 1
-            path = []
-
-            while vertex != -1:
-                path.append(vertex)
-                vertex = Predecessors[vertex - 1]
-            
-            path.reverse()
-            shortestPaths[i + 1] = {"Path": path, "Cost": Distance[i]}
-
-        return shortestPaths
+        return self._prettifyOutput(Distance, Predecessors, length)
 
 
 if __name__ == "__main__":
@@ -88,6 +91,8 @@ if __name__ == "__main__":
         8: []
         }
     graph = Graph(dataGraph)
+    graph.showGraph()
     pathFinder = Dijkstra(graph, 1, 4)
 
-    print(pathFinder.findShortestPath())
+    shortest = pathFinder.findShortestPath()
+    graph.showGraph(shortest)
