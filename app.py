@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from get_data import read_from_file, convertBoardToGraph
+from get_data import read_from_file, convertBoardToGraph, createGraph
 
 
 def parseArgs():
@@ -13,5 +13,5 @@ if __name__ == "__main__":
     args = parseArgs()
     data = read_from_file(args.name)
     print(data)
-    graphData = convertBoardToGraph(data)
+    graphData = createGraph(data)
     print(graphData)

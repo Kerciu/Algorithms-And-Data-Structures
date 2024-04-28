@@ -11,6 +11,34 @@ def read_from_file(path):
         raise Exception("Exception occured")
 
 
+def createGraph(board):
+    graph = {}
+
+    rows = len(board)
+    cols = len(board[0])
+
+    def isValidPoint(x, y):
+        return 0 <= x < rows and 0 <= y < cols
+
+    for i in range(rows):
+        for j in range(cols):
+            if board[i][j] != 'X':
+                graph[(i, j)] = []
+                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    nx, ny = i + dx, j + dy
+                    if isValidPoint(nx, ny):
+                        if board[nx][ny] != 'X':
+                            if board[nx][ny] == 'J':
+                                cost = 0
+                            else:
+                                cost = int(board[nx][ny])
+                            graph[(i, j)].append(((nx, ny), cost))
+            else:
+                graph[(i, j)] = [(i, j), 0]
+
+    return graph
+
+
 def convertBoardToGraph(board: str) -> dict:
     # ["1234", "2345", "5312"]
 
