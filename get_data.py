@@ -19,5 +19,12 @@ def convertBoardToGraph(board: str) -> dict:
         graph[i + 1] = []
         for j, char in enumerate(elem):
             if char != '0':
-                graph[i + 1].append((j + 1, char))
+                if char.isdigit():
+                    graph[i + 1].append((j + 1, int(char)))
+                elif char == 'J':
+                    graph[i + 1].append((j + 1, 0))
+                elif char == 'X':
+                    graph[i + 1].append((j + 1, char))
+                else:
+                    raise ValueError(f"Invalid character '{char}' in the board")
     return graph
