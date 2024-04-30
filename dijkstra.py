@@ -9,11 +9,12 @@ class WrongDataProvided(Exception):
 @dataclass
 class Dijkstra:
     graph: Graph
-    source: int
-    destination: int
+    source: tuple[int]
+    destination: tuple[int]
+    # destination: tuple[int]
 
     def __post_init__(self) -> None:
-        if not isinstance(self.graph, Graph) or not isinstance(self.source, int) or not isinstance(self.destination, int):
+        if not isinstance(self.graph, Graph) or not isinstance(self.source, tuple) or not isinstance(self.destination, tuple):
             raise WrongDataProvided("Wrong data provided")
 
         sourceFound: bool = False
@@ -24,19 +25,8 @@ class Dijkstra:
             if key == self.destination:
                 destinationFound = True
 
-        if not destinationFound or not sourceFound:
-            raise WrongDataProvided("Wrong data provided")
-
-    def _minimumDistance(self, Distance, Q):
-        minDistance = float("inf")
-        minIdx = None
-
-        for v in Q:
-            if Distance[v - 1] < minDistance:
-                minDistance = Distance[v - 1]
-                minIdx = v
-
-        return minIdx
+        if not sourceFound or not destinationFound:
+            raise WrongDataProvided("No data provided")
 
     def _prettifyOutput(self, Distance, Predecessors, length):
         shortestPaths = {}
@@ -47,52 +37,37 @@ class Dijkstra:
             while vertex != -1:
                 path.append(vertex)
                 vertex = Predecessors[vertex - 1]
-     
+
             path.reverse()
             shortestPaths[i + 1] = {"Path": path, "Cost": Distance[i]}
 
         return shortestPaths
 
+    def showKeys(self):
+        print(self.graph.content.keys())
+
     def findShortestPath(self):
         """
-        Returns dictionary of costs to each 
+        Returns dictionary of costs to each
         """
-        length = self.graph.computeVertecies()
-        Vertecies = list(self.graph.content.keys())              # All the vertecies of the graph
-        Distance = [float("inf")] * length                       # Path cost table
-        Predecessors = [-1] * length                             # Predeccessor table
+        visited = set()
+        distances = {(x, y): float('inf') for (x, y) in self.graph.content.keys()}
+        distances[self.source] = 0
+        predecessors = {(x, y): None for (x, y) in self.graph.content.keys()}
 
-        Distance[self.source - 1] = 0
-        actualVertecies = set(Vertecies)
+        predecessors[self.source] = self.source
 
-        while actualVertecies:
+        while len(visited) < len(self.graph.content):
+            currentVertex = min(((x, y) for (x, y) in self.graph.content.keys() if (x, y) not in visited), key=lambda z: distances[z])
+            visited.add(currentVertex)
 
-            u = self._minimumDistance(Distance, actualVertecies)
-            actualVertecies.remove(u)
+            for neighbor_data in self.graph.content[currentVertex]:
+                neighborPosition = neighbor_data[0]
+                neightWeight = neighbor_data[1]
+                distance = distances[currentVertex] + neightWeight
 
-            for v, weight in self.graph.content[u]:
+                if distance < distances[neighborPosition]:
+                    distances[neighborPosition] = distance
+                    predecessors[neighborPosition] = currentVertex
 
-                if Distance[v - 1] > Distance[u - 1] + weight:
-                    Distance[v - 1] = Distance[u - 1] + weight
-                    Predecessors[v - 1] = u
-
-        return self._prettifyOutput(Distance, Predecessors, length)
-
-
-if __name__ == "__main__":
-    dataGraph = {
-        1: [(2, 10), (3, 15), (4, 20)],
-        2: [(5, 25)],
-        3: [(6, 5)],
-        4: [(7, 10)],
-        5: [(8, 15)],
-        6: [(8, 20)],
-        7: [(8, 25)],
-        8: []
-        }
-    graph = Graph(dataGraph)
-    graph.showGraph()
-    pathFinder = Dijkstra(graph, 1, 4)
-
-    shortest = pathFinder.findShortestPath()
-    graph.showGraph(shortest)
+        return distances, predecessors
