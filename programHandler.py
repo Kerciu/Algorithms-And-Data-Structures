@@ -49,6 +49,19 @@ class ProgramHandler:
         return graph
 
     @staticmethod
+    def findXpositions(board: list[str]):
+        xPos = []
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == 'X':
+                    xPos.append((i, j))
+
+        if len(xPos) != 2:
+            raise ValueError("Too many or too little X'es in the board!")
+
+        return xPos
+
+    @staticmethod
     def createTextPath(board: list[str], dataDict: dict[str, list[tuple[int]]]) -> str:
         rows = len(board)
         cols = len(board[0])
