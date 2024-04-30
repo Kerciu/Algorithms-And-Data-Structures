@@ -23,32 +23,20 @@ def createGraph(board):
     for i in range(rows):
         for j in range(cols):
             graph[(i, j)] = []
-            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-                nx, ny = i + dx, j + dy
-                if isValidPoint(nx, ny):
-                    if board[nx][ny] == 'J' or board[nx][ny] == 'X':
-                        cost = 0
-                    else:
-                        cost = int(board[nx][ny])
-                    graph[(i, j)].append(((nx, ny), cost))
+            if board[i][j] == 'J':
+                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    nx, ny = i + dx, j + dy
+                    if isValidPoint(nx, ny):
+                        graph[(i, j)].append(((nx, ny), 0))
 
-    return graph
+            else:
+                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    nx, ny = i + dx, j + dy
+                    if isValidPoint(nx, ny):
+                        if board[nx][ny] == 'J' or board[nx][ny] == 'X':
+                            cost = 0
+                        else:
+                            cost = int(board[nx][ny])
+                        graph[(i, j)].append(((nx, ny), cost))
 
-
-def convertBoardToGraph(board: str) -> dict:
-    # ["1234", "2345", "5312"]
-
-    graph = {}
-    for i, elem in enumerate(board):
-        graph[i + 1] = []
-        for j, char in enumerate(elem):
-            if char != '0':
-                if char.isdigit():
-                    graph[i + 1].append((j + 1, int(char)))
-                elif char == 'J':
-                    graph[i + 1].append((j + 1, 0))
-                elif char == 'X':
-                    graph[i + 1].append((j + 1, char))
-                else:
-                    raise ValueError(f"Invalid character '{char}' in the board")
     return graph
