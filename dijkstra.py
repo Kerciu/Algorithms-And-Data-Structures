@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from graph import Graph
+from graphInstance import Graph
 
 
 class WrongDataProvided(Exception):

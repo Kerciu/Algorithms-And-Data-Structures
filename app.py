@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from dijkstra import Dijkstra
-from graph import Graph
-from get_data import ProgramHandler
+from graphInstance import Graph
+from programHandler import ProgramHandler
 
 
 def parseArgs():
@@ -19,7 +19,8 @@ if __name__ == "__main__":
     graphData = handler.createGraph(boardData)
     graph = Graph(graphData)
 
-    dijkstra = Dijkstra(graph, (1, 2), (3, 2))
+    xPos = handler.findXpositions(boardData)
+    dijkstra = Dijkstra(graph, xPos[0], xPos[1])
     result = dijkstra.findShortestPath()
 
     print(handler.createTextPath(boardData, result))

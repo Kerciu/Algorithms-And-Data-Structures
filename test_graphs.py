@@ -1,4 +1,4 @@
-from graph import Graph
+from graphInstance import Graph
 from dijkstra import Dijkstra, WrongDataProvided
 import pytest
 
