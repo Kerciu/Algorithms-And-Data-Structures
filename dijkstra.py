@@ -55,9 +55,9 @@ class Dijkstra:
         distances[self.source] = 0
         predecessors = {(x, y): None for (x, y) in self.graph.content.keys()}
 
-        predecessors[self.source] = self.source
+        currentVertex = self.source
 
-        while len(visited) < len(self.graph.content):
+        while len(visited) != len(distances):
             currentVertex = min(((x, y) for (x, y) in self.graph.content.keys() if (x, y) not in visited), key=lambda z: distances[z])
             visited.add(currentVertex)
 

@@ -22,19 +22,15 @@ def createGraph(board):
 
     for i in range(rows):
         for j in range(cols):
-            if board[i][j] != 'X':
-                graph[(i, j)] = []
-                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-                    nx, ny = i + dx, j + dy
-                    if isValidPoint(nx, ny):
-                        if board[nx][ny] != 'X':
-                            if board[nx][ny] == 'J':
-                                cost = 0
-                            else:
-                                cost = int(board[nx][ny])
-                            graph[(i, j)].append(((nx, ny), cost))
-            else:
-                graph[(i, j)] = [((i, j), 0)]
+            graph[(i, j)] = []
+            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                nx, ny = i + dx, j + dy
+                if isValidPoint(nx, ny):
+                    if board[nx][ny] == 'J' or board[nx][ny] == 'X':
+                        cost = 0
+                    else:
+                        cost = int(board[nx][ny])
+                    graph[(i, j)].append(((nx, ny), cost))
 
     return graph
 
