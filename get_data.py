@@ -34,7 +34,7 @@ def createGraph(board):
                                 cost = int(board[nx][ny])
                             graph[(i, j)].append(((nx, ny), cost))
             else:
-                graph[(i, j)] = [(i, j), 0]
+                graph[(i, j)] = [((i, j), 0)]
 
     return graph
 
