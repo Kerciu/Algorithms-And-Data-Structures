@@ -2,10 +2,10 @@ from graph import Graph
 from dijkstra import Dijkstra, WrongDataProvided
 import pytest
 
-sampleGraphData = {1: [(2, 3), (3, 1)],
-                   2: [(3, 2)],
-                   3: [(4, 5)],
-                   4: [(1, 2)]}
+sampleGraphData = {(0, 0): [(2, 3), (3, 1)],
+                   (0, 1): [(3, 2)],
+                   (1, 0): [(4, 5)],
+                   (4, 0): [(1, 2)]}
 
 
 def test_compute_vertices():
@@ -15,10 +15,10 @@ def test_compute_vertices():
 
 def test_dijkstra_initialization():
     graph = Graph(sampleGraphData)
-    dijkstra = Dijkstra(graph, 1, 4)
+    dijkstra = Dijkstra(graph, (1, 0), (4, 0))
     assert dijkstra.graph == graph
-    assert dijkstra.source == 1
-    assert dijkstra.destination == 4
+    assert dijkstra.source == (1, 0)
+    assert dijkstra.destination == (4, 0)
 
 
 def test_dijkstra_wrong_data():
