@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from dijkstra import Dijkstra
 from graph import Graph
-from get_data import read_from_file, convertBoardToGraph, createGraph
+from get_data import ProgramHandler
 
 
 def parseArgs():
@@ -13,12 +13,13 @@ def parseArgs():
 
 if __name__ == "__main__":
     args = parseArgs()
-    data = read_from_file(args.name)
-    print(data)
-    # testData = {(0, 0): [((0, 1), 1), ((1, 0), 1)], (0, 1): [((0, 2), 1), ((0, 0), 0), ((1, 1), 2)], (0, 2): [((0, 3), 2), ((0, 1), 1)], (0, 3): [((0, 4), 0), ((0, 2), 1), ((1, 3), 2)], (0, 4): [((0, 3), 2), ((1, 4), 1)], (1, 0): [((1, 1), 2), ((2, 0), 0), ((0, 0), 0)], (1, 1): [((1, 0), 1), ((2, 1), 0), ((0, 1), 1)], (1, 2): [((1, 2), 0)], (1, 3): [((1, 4), 1), ((2, 3), 1), ((0, 3), 2)], (1, 4): [((1, 3), 2), ((2, 4), 0), ((0, 4), 0)], (2, 0): [((2, 1), 0), ((3, 0), 1), ((1, 0), 1)], (2, 1): [((2, 2), 4), ((2, 0), 0), ((3, 1), 2), ((1, 1), 2)], (2, 2): [((2, 3), 1), ((2, 1), 0)], (2, 3): [((2, 4), 0), ((2, 2), 4), ((3, 3), 1), ((1, 3), 2)], (2, 4): [((2, 3), 1), ((3, 4), 1), ((1, 4), 1)], (3, 0): [((3, 1), 2), ((4, 0), 0), ((2, 0), 0)], (3, 1): [((3, 0), 1), ((4, 1), 1), ((2, 1), 0)], (3, 2): [((3, 2), 0)], (3, 3): [((3, 4), 1), ((4, 3), 1), ((2, 3), 1)], (3, 4): [((3, 3), 1), ((4, 4), 0), ((2, 4), 0)], (4, 0): [((4, 1), 1), ((3, 0), 1)], (4, 1): [((4, 2), 1), ((4, 0), 0), ((3, 1), 2)], (4, 2): [((4, 3), 1), ((4, 1), 1)], (4, 3): [((4, 4), 0), ((4, 2), 1), ((3, 3), 1)], (4, 4): [((4, 3), 1), ((3, 4), 1)]}
+    handler = ProgramHandler()
+    boardData = handler.readFromFile(args.name)
 
-    graphData = createGraph(data)
+    graphData = handler.createGraph(boardData)
     graph = Graph(graphData)
-    print(graphData)
+
     dijkstra = Dijkstra(graph, (1, 2), (3, 2))
-    print(dijkstra.findShortestPath())
+    result = dijkstra.findShortestPath()
+
+    print(handler.createTextPath(boardData, result))
