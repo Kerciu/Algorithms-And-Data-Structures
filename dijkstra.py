@@ -40,9 +40,6 @@ class Dijkstra:
 
         return {"Path": pathThrough, "Cost": Distance[self.destination]}
 
-    def showKeys(self):
-        print(self.graph.content.keys())
-
     def findShortestPath(self):
         """
         Returns dictionary of costs to each
