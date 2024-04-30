@@ -28,20 +28,17 @@ class Dijkstra:
         if not sourceFound or not destinationFound:
             raise WrongDataProvided("No data provided")
 
-    def _prettifyOutput(self, Distance, Predecessors, length):
-        shortestPaths = {}
-        for i in range(length):
-            vertex = i + 1
-            path = []
+    def _prettifyOutput(self, Distance, Predecessors):
+        pathThrough = []
+        pathStart = self.destination
 
-            while vertex != -1:
-                path.append(vertex)
-                vertex = Predecessors[vertex - 1]
+        while pathStart != self.source:
+            pathThrough.append(pathStart)
+            pathStart = Predecessors[pathStart]
+        pathThrough.append(self.source)
+        pathThrough.reverse()
 
-            path.reverse()
-            shortestPaths[i + 1] = {"Path": path, "Cost": Distance[i]}
-
-        return shortestPaths
+        return {"Path": pathThrough, "Cost": Distance[self.destination]}
 
     def showKeys(self):
         print(self.graph.content.keys())
@@ -70,4 +67,4 @@ class Dijkstra:
                     distances[neighborPosition] = distance
                     predecessors[neighborPosition] = currentVertex
 
-        return distances, predecessors
+        return self._prettifyOutput(distances, predecessors)
