@@ -18,7 +18,7 @@ class ProgramHandler:
             raise Exception("Exception occured")
 
     @staticmethod
-    def createGraph(board):
+    def createGraph(board: list[list]) -> dict:
         graph = {}
 
         rows = len(board)
@@ -49,7 +49,7 @@ class ProgramHandler:
         return graph
 
     @staticmethod
-    def findXpositions(board: list[str]):
+    def findXpositions(board: list[str]) -> list[tuple]:
         xPos = []
         for i in range(len(board)):
             for j in range(len(board[0])):
@@ -78,4 +78,5 @@ class ProgramHandler:
 
             result += '\n'
 
-        return result + f"\nKoszt: {dataDict['Cost']}"
+        return result + f"\nCost: {dataDict['Cost']}"
+

@@ -28,7 +28,7 @@ class Dijkstra:
         if not sourceFound or not destinationFound:
             raise WrongDataProvided("No data provided")
 
-    def _prettifyOutput(self, Distance, Predecessors):
+    def _prettifyOutput(self, Distance: dict, Predecessors: dict) -> dict:
         pathThrough = []
         pathStart = self.destination
 
@@ -40,7 +40,7 @@ class Dijkstra:
 
         return {"Path": pathThrough, "Cost": Distance[self.destination]}
 
-    def findShortestPath(self):
+    def findShortestPath(self) -> dict:
         """
         Returns dictionary of costs to each
         """
