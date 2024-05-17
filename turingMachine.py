@@ -57,4 +57,10 @@ class Turing:
             self.state = "halt"
 
     def runMachine(self):
+        while not self.state.startswith("halt"):
+            self.takeStep()
+            self.printState()
+        self.printState()
+    
+    def printState(self):
         pass
