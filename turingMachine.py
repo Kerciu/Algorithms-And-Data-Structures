@@ -33,3 +33,28 @@ class Turing:
         self.tape = [*tape]
         self.head = 0
         self.state = "init"
+
+    def takeStep(self):
+        currentSymbol = self.tape[self.head] if self.head < len(self.tape) else '_'
+
+        if self.state in self.transitions and currentSymbol in self.transitions[self.state]:
+
+            transition = self.transitions[self.state][currentSymbol]
+
+            if self.head < len(self.tape):
+                self.tape[self.head] = transition.newSymbol
+            else:
+                self.tape.append(transition.newSymbol)
+
+            if transition.direction == 'L':
+                self.head = max(0, self.head - 1)
+            elif transition.direction == 'R':
+                self.head += 1
+   
+            self.state = transition.newState
+  
+        else:
+            self.state = "halt"
+
+    def runMachine(self):
+        pass
