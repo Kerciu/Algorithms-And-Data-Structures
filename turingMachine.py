@@ -1,3 +1,4 @@
+from fileService import readFromFile
 from dataclasses import dataclass
 from transitionFunction import TransitionFunction
 
@@ -50,9 +51,9 @@ class Turing:
                 self.head = max(0, self.head - 1)
             elif transition.direction == 'R':
                 self.head += 1
-   
+
             self.state = transition.newState
-  
+
         else:
             self.state = "halt"
 
@@ -61,6 +62,20 @@ class Turing:
             self.takeStep()
             self.printState()
         self.printState()
-    
+
     def printState(self):
-        pass
+        tapeString = "".join(self.tape).strip("_")
+        print(f"{tapeString} {self.state}", '\n')
+        headString = self.head * ' ' + '^'
+        print(headString)
+
+    @classmethod
+    def createMachineFromFile(cls, instructionPath: str, tapePath: str):
+        lines, tape = readFromFile(instructionPath, tapePath)
+
+        transitions = []
+        for line in lines:
+            if len(line) == 5:
+                transitions.append(TransitionFunction(*line))
+
+        return cls(transitions, tape)
