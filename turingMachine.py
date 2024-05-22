@@ -31,7 +31,7 @@ class Turing:
                 self.transitions[func.currentState] = {}
             self.transitions[func.currentState][func.currentSymbol] = func
 
-        self.tape = [*tape]
+        self.tape = [*tape] + ['_']
         self.head = 0
         self.state = "init"
 
@@ -41,6 +41,7 @@ class Turing:
         if self.state in self.transitions and currentSymbol in self.transitions[self.state]:
 
             transition = self.transitions[self.state][currentSymbol]
+            self.tape[self.head] = transition.newSymbol
 
             if self.head < len(self.tape):
                 self.tape[self.head] = transition.newSymbol
@@ -58,19 +59,19 @@ class Turing:
             self.state = "halt"
 
     def runMachine(self):
+        self.printState()
         while not self.state.startswith("halt"):
             self.takeStep()
             self.printState()
-        self.printState()
 
     def printState(self):
-        tapeString = "".join(self.tape).strip("_")
-        print(f"{tapeString} {self.state}", '\n')
+        tapeString = "".join(self.tape)
+        print(f"{tapeString[:-1] if self.head != len(self.tape) - 1 else tapeString} {self.state}")
         headString = self.head * ' ' + '^'
         print(headString)
 
     @classmethod
-    def createMachineFromFile(cls, instructionPath: str, tapePath: str):
+    def createMachineFromFile(cls, tapePath: str, instructionPath: str):
         lines, tape = readFromFile(instructionPath, tapePath)
 
         transitions = []
