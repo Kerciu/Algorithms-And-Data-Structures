@@ -71,8 +71,8 @@ class Turing:
         print(headString)
 
     @classmethod
-    def createMachineFromFile(cls, tapePath: str, instructionPath: str):
-        lines, tape = readFromFile(instructionPath, tapePath)
+    def createMachineFromFile(cls, tape: str, instructionPath: str):
+        lines, tape = readFromFile(instructionPath, tape)
 
         transitions = []
         for line in lines:
