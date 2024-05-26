@@ -1,0 +1,11 @@
+init 0 0 R init
+init 1 1 R q1
+init _ _ R count_ones
+q1 0 0 R q1
+q1 1 1 R q1
+q1 _ _ R count_ones
+count_ones 1 _ L count_ones
+count_ones 0 _ L count_ones
+count_ones _ _ R output_ones
+output_ones 1 1 R output_ones
+output_ones _ _ R halt
