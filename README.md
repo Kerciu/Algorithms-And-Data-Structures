@@ -16,7 +16,7 @@ This folder contains implementations of heap algorithm.
 This folder contains implementations of various sorting algorithms, such as bubble sort, insertion sort, selection sort, quicksort and mergesort.
 
 ### Turing Machine
-This folder contains implementations of Turing machines and algorithms based on Turing machines.
+This folder contains implementations of Turing machines and exemplary programs based on Turing machine.
 
 -----------------------------
 
