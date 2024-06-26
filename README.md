@@ -15,6 +15,9 @@ This folder contains implementations of heap algorithm.
 ### Sorting Algorithms
 This folder contains implementations of various sorting algorithms, such as bubble sort, insertion sort, selection sort, quicksort and mergesort.
 
+### Dijkstra
+This folder contains implementation of dijkstra algorithm for finding the shortest path in a graph through given board.
+
 ### Turing Machine
 This folder contains implementations of Turing machines and exemplary programs based on Turing machine.
 
