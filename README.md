@@ -1,27 +1,49 @@
-# Algorithms and Data Structures
+---
 
-This repository contains implementations of various algorithms and data structures developed by Kacper Górski and Maciej Cieślik for computational complexity analysis.
+# 🌟 Algorithms and Data Structures 🌟
 
------------------------------
+Welcome to the repository of various algorithms and data structures! Developed by **Kacper Górski** and **Maciej Cieślik**, this collection is perfect for those interested in computational complexity analysis and algorithmic thinking. 🚀
 
-## Data Structures
+---
 
-### Trees
-This folder contains implementations of various tree data structures, such as binary search trees (BST) and AVL trees
+## 📁 Data Structures
 
-### Heaps
-This folder contains implementations of heap algorithm.
+### 🌳 Trees
+This folder houses implementations of various tree data structures, including:
+- Binary Search Trees (BST)
+- AVL Trees
 
-### Sorting Algorithms
-This folder contains implementations of various sorting algorithms, such as bubble sort, insertion sort, selection sort, quicksort and mergesort.
+Explore the intricacies of tree-based structures and their applications in efficient data management. 🌲
 
-### Dijkstra
-This folder contains implementation of dijkstra algorithm for finding the shortest path in a graph through given board.
+### 🏗️ Heaps
+Dive into the world of heap algorithms with our comprehensive implementations. Heaps are essential for priority queues and efficient sorting operations. 🔧
 
-### Turing Machine
-This folder contains implementations of Turing machines and exemplary programs based on Turing machine.
+### 🔄 Sorting Algorithms
+Find a range of sorting algorithms implemented here:
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Quicksort
+- Mergesort
 
------------------------------
+Whether you're optimizing performance or learning the fundamentals, these implementations cover a broad spectrum of sorting techniques. 📊
 
-### About the Authors
-The repository is maintained by Kacper Górski and Maciej Cieślik, who are computer science students at the Faculty of Electronics and Information Technology at the Warsaw University of Technology. Their interests include algorithms, data structures, and computational theory.
+### 📍 Dijkstra
+Explore our implementation of Dijkstra's Algorithm, which finds the shortest path in a graph. Perfect for pathfinding problems and network analysis. 🗺️
+
+### 🤖 Turing Machine
+Delve into the theoretical aspects of computation with implementations of Turing machines and example programs. A great resource for understanding the foundations of computer science. 🧩
+
+---
+
+## 👩‍💻 About the Authors
+
+This repository is maintained by:
+- **Kacper Górski**
+- **Maciej Cieślik**
+
+Both are enthusiastic computer science students from the Faculty of Electronics and Information Technology at the Warsaw University of Technology. Their interests include algorithms, data structures, and computational theory. 🌟
+
+Feel free to explore, contribute, and provide feedback. Happy coding! 🎉
+
+---
