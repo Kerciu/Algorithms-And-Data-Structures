@@ -1,49 +1,31 @@
 ---
 
-# 🌟 Algorithms and Data Structures 🌟
+# 🔍 Algorithms and Data Structures
 
-Welcome to the repository of various algorithms and data structures! Developed by **Kacper Górski** and **Maciej Cieślik**, this collection is perfect for those interested in computational complexity analysis and algorithmic thinking. 🚀
+This repository contains implementations of various algorithms and data structures developed by Kacper Górski and Maciej Cieślik for computational complexity analysis. 📊
 
----
+-----------------------------
 
 ## 📁 Data Structures
 
 ### 🌳 Trees
-This folder houses implementations of various tree data structures, including:
-- Binary Search Trees (BST)
-- AVL Trees
-
-Explore the intricacies of tree-based structures and their applications in efficient data management. 🌲
+This folder contains implementations of various tree data structures, such as binary search trees (BST) and AVL trees. 🌲
 
 ### 🏗️ Heaps
-Dive into the world of heap algorithms with our comprehensive implementations. Heaps are essential for priority queues and efficient sorting operations. 🔧
+This folder contains implementations of heap algorithms. 🔧
 
 ### 🔄 Sorting Algorithms
-Find a range of sorting algorithms implemented here:
-- Bubble Sort
-- Insertion Sort
-- Selection Sort
-- Quicksort
-- Mergesort
-
-Whether you're optimizing performance or learning the fundamentals, these implementations cover a broad spectrum of sorting techniques. 📊
+This folder contains implementations of various sorting algorithms, such as bubble sort, insertion sort, selection sort, quicksort, and mergesort. 🧮
 
 ### 📍 Dijkstra
-Explore our implementation of Dijkstra's Algorithm, which finds the shortest path in a graph. Perfect for pathfinding problems and network analysis. 🗺️
+This folder contains the implementation of Dijkstra's algorithm for finding the shortest path in a graph. 🗺️
 
 ### 🤖 Turing Machine
-Delve into the theoretical aspects of computation with implementations of Turing machines and example programs. A great resource for understanding the foundations of computer science. 🧩
+This folder contains implementations of Turing machines and exemplary programs based on Turing machines. 🧩
 
----
+-----------------------------
 
-## 👩‍💻 About the Authors
-
-This repository is maintained by:
-- **Kacper Górski**
-- **Maciej Cieślik**
-
-Both are enthusiastic computer science students from the Faculty of Electronics and Information Technology at the Warsaw University of Technology. Their interests include algorithms, data structures, and computational theory. 🌟
-
-Feel free to explore, contribute, and provide feedback. Happy coding! 🎉
+### 👨‍💻 About the Authors
+The repository is maintained by Kacper Górski and Maciej Cieślik, who are computer science students at the Faculty of Electronics and Information Technology at the Warsaw University of Technology. Their interests include algorithms, data structures, and computational theory. 🌟
 
 ---
